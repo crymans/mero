@@ -1,0 +1,6 @@
+/* Полностью очищаем файл и начинаем с нуля */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Временно НЕ используем @apply и @layer */
