@@ -33,187 +33,187 @@ async def init_test_data():
 
             # 2. Создаем тестовые продукты
             test_products = [
-                {
-                    "name": "9 шотов из ликера",
-                    "description": "3 малина, 3 апельсин, 3 мандарин",
-                    "price": 1800,
-                    "category": "drink",
-                    "count": 100,
-                    "is_for_table": True,
-                    "image_url": None
-                },
-                {
-                    "name": "27 шотов из ликера",
-                    "description": "9 малина, 9 апельсин, 9 мандарин",
-                    "price": 4500,
-                    "category": "drink",
-                    "count": 100,
-                    "is_for_table": True,
-                    "image_url": None
-                },
-                {
-                    "name": "Ликер апельсин",
-                    "description": "Апельсиновый ликер",
-                    "price": 250,
-                    "category": "drink",
-                    "count": 100,
-                    "is_for_table": False,
-                    "image_url": None
-                },
-                {
-                    "name": "Ликер апельсин",
-                    "description": "Апельсиновый ликер",
-                    "price": 250,
-                    "category": "drink",
-                    "count": 100,
-                    "is_for_table": False,
-                    "image_url": None
-                },
-                                                {
-                    "name": "Ликер апельсин",
-                    "description": "Апельсиновый ликер",
-                    "price": 250,
-                    "category": "drink",
-                    "count": 100,
-                    "is_for_table": False,
-                    "image_url": None
-                },
-                {
-                    "name": "Отвертка",
-                    "description": "Водка с апельсиновым соком",
-                    "price": 350.0,
-                    "category": "drink",
-                    "count": 50,
-                    "is_for_table": False,
-                    "image_url": None
-                },
-                {
-                    "name": "Виски-кола",
-                    "description": "Виски с колой :)",
-                    "price": 350.0,
-                    "category": "drink",
-                    "count": 40,
-                    "is_for_table": False,
-                    "image_url": None
-                },
-                {
-                    "name": "Куба Либре",
-                    "description": "Виски, кола, лайм",
-                    "price": 370.0,
-                    "category": "drink",
-                    "count": 40,
-                    "is_for_table": False,
-                    "image_url": None
-                },
-                {
-                    "name": "Ёрш",
-                    "description": "Водка, пиво",
-                    "price": 300.0,
-                    "category": "drink",
-                    "count": 100,
-                    "is_for_table": False,
-                    "image_url": None
-                },
-                {
-                    "name": "Ликер малина",
-                    "description": "Малиновый ликер",
-                    "price": 250,
-                    "category": "drink",
-                    "count": 100,
-                    "is_for_table": False,
-                    "image_url": None
-                },
-                                {
-                    "name": "Ликер апельсин",
-                    "description": "Апельсиновый ликер",
-                    "price": 250,
-                    "category": "drink",
-                    "count": 100,
-                    "is_for_table": False,
-                    "image_url": None
-                },
-                  {
-                    "name": "Ликер мандарин",
-                    "description": "Мандариновый ликер",
-                    "price": 250,
-                    "category": "drink",
-                    "count": 100,
-                    "is_for_table": False,
-                    "image_url": None
-                },
-                                  {
-                    "name": "Виски",
-                    "description": "Виски в стакане",
-                    "price": 350,
-                    "category": "drink",
-                    "count": 100,
-                    "is_for_table": False,
-                    "image_url": None
-                },
-                                  {
-                    "name": "Коньяк",
-                    "description": "Коньяк в стакане",
-                    "price": 350,
-                    "category": "drink",
-                    "count": 100,
-                    "is_for_table": False,
-                    "image_url": None
-                },
-                {
-                    "name": "Пиво",
-                    "description": "Пиво 0.5л светлое",
-                    "price": 200,
-                    "category": "drink",
-                    "count": 100,
-                    "is_for_table": False,
-                    "image_url": None
-                },
-                {
-                    "name": "Пиво",
-                    "description": "Пиво 0.5л темное",
-                    "price": 200,
-                    "category": "drink",
-                    "count": 100,
-                    "is_for_table": False,
-                    "image_url": None
-                },
-                {
-                    "name": "Энергетик",
-                    "description": "Энергетик на выбор",
-                    "price": 200,
-                    "category": "drink",
-                    "count": 100,
-                    "is_for_table": False,
-                    "image_url": None
-                },
-                {
-                    "name": "Сок",
-                    "description": "Сок 250мл в асссортименте",
-                    "price": 150,
-                    "category": "drink",
-                    "count": 100,
-                    "is_for_table": False,
-                    "image_url": None
-                },
-                {
-                    "name": "Вода",
-                    "description": "Вода 0.5л",
-                    "price": 70.0,
-                    "category": "drink",
-                    "count": 30,
-                    "is_for_table": False,
-                    "image_url": None
-                },
-                {
-                    "name": "Хот-Дог",
-                    "description": "Сочный хот-дог с мясной сосиской",
-                    "price": 250.0,
-                    "category": "food",
-                    "count": 50,
-                    "is_for_table": False,
-                    "image_url": None
-                }
-            ]
+            {
+                "name": "9 шотов из ликера",
+                "description": "3 малина, 3 апельсин, 3 мандарин",
+                "price": 1800,
+                "category": "drink",
+                "count": 100,
+                "is_for_table": True,
+                "image_url": "https://img.freepik.com/free-photo/assorted-color-liqueur-shots-glasses_140725-282.jpg"
+            },
+            {
+                "name": "Хот-Дог",
+                "description": "Сочный хот-дог с мясной сосиской",
+                "price": 250.0,
+                "category": "food",
+                "count": 50,
+                "is_for_table": False,
+                "image_url": "https://img.freepik.com/free-photo/hot-dog-with-mustard-ketchup_1339-998.jpg"
+            },
+            {
+                "name": "Мясная тарелка",
+                "description": "Ассорти колбас, украшенных зеленью",
+                "price": 500,
+                "category": "food",
+                "count": 50,
+                "is_for_table": False,
+                "image_url": "https://img.freepik.com/free-photo/assorted-sliced-sausages-wooden-board_114579-7620.jpg"
+            },
+            {
+                "name": "Сырная тарелка",
+                "description": "Ассорти сыров",
+                "price": 500,
+                "category": "food",
+                "count": 50,
+                "is_for_table": False,
+                "image_url": "https://img.freepik.com/free-photo/cheese-plate-with-various-types-cheese_1150-5762.jpg"
+            },
+            {
+                "name": "Сырная + Мясная",
+                "description": "Ассорти сыров, колбас",
+                "price": 800,
+                "category": "food",
+                "count": 50,
+                "is_for_table": False,
+                "image_url": "https://img.freepik.com/free-photo/cheese-meat-platter-with-grapes_114579-24079.jpg"
+            },
+            {
+                "name": "27 шотов из ликера",
+                "description": "9 малина, 9 апельсин, 9 мандарин",
+                "price": 500,
+                "category": "drink",
+                "count": 100,
+                "is_for_table": True,
+                "image_url": "https://img.freepik.com/free-photo/multiple-colored-liqueur-shots_140725-280.jpg"
+            },
+            {
+                "name": "Ликер апельсин",
+                "description": "Апельсиновый ликер",
+                "price": 250,
+                "category": "drink",
+                "count": 100,
+                "is_for_table": False,
+                "image_url": "https://img.freepik.com/free-photo/orange-liqueur-glass_1339-1104.jpg"
+            },
+            {
+                "name": "Отвертка",
+                "description": "Водка с апельсиновым соком",
+                "price": 350.0,
+                "category": "drink",
+                "count": 50,
+                "is_for_table": False,
+                "image_url": "https://img.freepik.com/free-photo/screwdriver-cocktail-glass_140725-1041.jpg"
+            },
+            {
+                "name": "Виски-кола",
+                "description": "Виски с колой :)",
+                "price": 350.0,
+                "category": "drink",
+                "count": 40,
+                "is_for_table": False,
+                "image_url": "https://img.freepik.com/free-photo/whiskey-coke-drink-glass_1339-1006.jpg"
+            },
+            {
+                "name": "Куба Либре",
+                "description": "Виски, кола, лайм",
+                "price": 370.0,
+                "category": "drink",
+                "count": 40,
+                "is_for_table": False,
+                "image_url": "https://img.freepik.com/free-photo/cuba-libre-cocktail-with-lime_140725-1053.jpg"
+            },
+            {
+                "name": "Ёрш",
+                "description": "Водка, пиво",
+                "price": 300.0,
+                "category": "drink",
+                "count": 100,
+                "is_for_table": False,
+                "image_url": "https://img.freepik.com/free-photo/beer-vodka-cocktail-glass_140725-1038.jpg"
+            },
+            {
+                "name": "Ликер малина",
+                "description": "Малиновый ликер",
+                "price": 250,
+                "category": "drink",
+                "count": 100,
+                "is_for_table": False,
+                "image_url": "https://img.freepik.com/free-photo/raspberry-liqueur-glass_1339-1106.jpg"
+            },
+            {
+                "name": "Ликер мандарин",
+                "description": "Мандариновый ликер",
+                "price": 250,
+                "category": "drink",
+                "count": 100,
+                "is_for_table": False,
+                "image_url": "https://img.freepik.com/free-photo/tangerine-liqueur-glass_1339-1107.jpg"
+            },
+            {
+                "name": "Виски",
+                "description": "Виски в стакане",
+                "price": 350,
+                "category": "drink",
+                "count": 100,
+                "is_for_table": False,
+                "image_url": "https://img.freepik.com/free-photo/whiskey-glass-with-ice_140725-1029.jpg"
+            },
+            {
+                "name": "Коньяк",
+                "description": "Коньяк в стакане",
+                "price": 350,
+                "category": "drink",
+                "count": 100,
+                "is_for_table": False,
+                "image_url": "https://img.freepik.com/free-photo/cognac-glass_1339-1098.jpg"
+            },
+            {
+                "name": "Пиво",
+                "description": "Пиво 0.5л светлое",
+                "price": 200,
+                "category": "drink",
+                "count": 100,
+                "is_for_table": False,
+                "image_url": "https://img.freepik.com/free-photo/glass-beer-with-foam_140725-1179.jpg"
+            },
+            {
+                "name": "Пиво",
+                "description": "Пиво 0.5л темное",
+                "price": 200,
+                "category": "drink",
+                "count": 100,
+                "is_for_table": False,
+                "image_url": "https://img.freepik.com/free-photo/dark-beer-glass_1339-1120.jpg"
+            },
+            {
+                "name": "Энергетик",
+                "description": "Энергетик на выбор",
+                "price": 200,
+                "category": "drink",
+                "count": 100,
+                "is_for_table": False,
+                "image_url": "https://img.freepik.com/free-photo/energy-drink-can_1339-1132.jpg"
+            },
+            {
+                "name": "Сок",
+                "description": "Сок 250мл в асссортименте",
+                "price": 150,
+                "category": "drink",
+                "count": 100,
+                "is_for_table": False,
+                "image_url": "https://img.freepik.com/free-photo/fruit-juices-glasses_140725-295.jpg"
+            },
+            {
+                "name": "Вода",
+                "description": "Вода 0.5л",
+                "price": 70.0,
+                "category": "drink",
+                "count": 30,
+                "is_for_table": False,
+                "image_url": "https://img.freepik.com/free-photo/bottle-water-glass-ice_1339-1144.jpg"
+            }
+        ]
 
             products_created = 0
             for product_data in test_products:
