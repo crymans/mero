@@ -4,9 +4,12 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.database import get_db
 from app import crud, schemas
 from app.dependencies import get_current_user
-import json
+import json, requests, aiohttp
+from tg_bot.create_bot import TOKEN
 
-router = APIRouter(prefix="/users", tags=["users"])
+router = APIRouter(prefix="/rostov_api/users", tags=["users"])
+
+
 
 @router.post("/", response_model=schemas.User, status_code=status.HTTP_201_CREATED)
 async def create_user(
@@ -16,7 +19,10 @@ async def create_user(
 ):
     try:
         user.telegram_id = json.loads(request.headers['user-data'])['id']
-        return await crud.create_user(db, user)
+        try:
+            return await crud.create_user(db, user)
+        except:
+            return await get_current_user(request, db)
     except crud.CRUDError as e:
         raise HTTPException(status_code=400, detail=str(e))
 
@@ -36,3 +42,19 @@ async def update_user_me(
         return await crud.update_user(db, current_user.telegram_id, user_update)
     except crud.CRUDError as e:
         raise HTTPException(status_code=404, detail=str(e))
+    
+@router.get("/purchase")
+async def invoice_purchase(
+    stars_amount: int,
+    current_user = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db)
+):
+    try:
+        title='Stars'
+        description='Stars'
+        prices=schemas.LabeledPrice(label='XTR', amount=stars_amount).to_json()
+        link = requests.get(f'https://api.telegram.org/bot'+TOKEN+'/createInvoiceLink?title='+title+'&description='+description+'&payload='+title+'&currency=XTR&prices=['+prices+']')
+        link = (link.json())['result']
+        return link
+    except Exception as e:
+        return False

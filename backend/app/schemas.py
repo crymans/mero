@@ -1,7 +1,8 @@
 # app/schemas.py
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import List, Optional
 from datetime import datetime
+import json
 
 class UserBase(BaseModel):
     telegram_id: Optional[str] = ''
@@ -9,6 +10,7 @@ class UserBase(BaseModel):
     first_name: Optional[str] = None
     last_name: Optional[str] = None
     phone: Optional[str] = None
+    balance: int = Field(default=0)
 
 class UserCreate(UserBase):
     pass
@@ -31,8 +33,8 @@ class User(UserBase):
         from_attributes = True
 
 class TicketBase(BaseModel):
-    qr_code: str
     price: float
+    qr_code: str
 
 class TicketCreate(TicketBase):
     pass
@@ -107,3 +109,15 @@ class ProductUpdate(BaseModel):
     count: Optional[int] = None
     is_for_table: Optional[bool] = None
     image_url: Optional[str] = None
+
+
+class LabeledPrice():
+    def __init__(self, label, amount):
+        self.label: str = label
+        self.amount: int = amount
+    def to_dict(self):
+        return {
+            'label': self.label, 'amount': self.amount
+        }
+    def to_json(self):
+        return json.dumps(self.to_dict())

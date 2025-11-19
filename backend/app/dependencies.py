@@ -12,7 +12,7 @@ async def get_current_user(
 )-> Optional[Any]:
     user = json.loads(request.headers['user-data'])
     try:
-        return  await crud.get_user_by_telegram_id(db, user['id'])
+        return await crud.get_user_by_telegram_id(db, user['id'])
     except:
         return user
     # if not user:

@@ -21,6 +21,7 @@ async def init_test_data():
             
             try:
                 admin_user = await crud.create_user(db, admin_data)
+                print(admin_user)
                 # Обновляем роль на admin
                 await crud.update_user_role(db, "admin", "admin")
                 print("✅ Тестовый админ создан")

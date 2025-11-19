@@ -5,7 +5,7 @@ from app.database import get_db
 from app import crud, schemas
 from app.dependencies import get_current_user, get_admin_user
 
-router = APIRouter(prefix="/products", tags=["products"])
+router = APIRouter(prefix="/rostov_api/products", tags=["products"])
 
 @router.get("/", response_model=list[schemas.Product])
 async def get_products(

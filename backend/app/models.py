@@ -15,7 +15,7 @@ class User(Base):
     phone = Column(String, nullable=True)
     role = Column(String, default='member')  # member, qr, chef, officiant, admin
     created_at = Column(DateTime(timezone=True), server_default=func.now())
-    
+    balance = Column(Integer, default=0)
     tickets = relationship("Ticket", back_populates="user")
     orders = relationship("Order", back_populates="user")
 

@@ -5,7 +5,7 @@ from app.database import get_db
 from app import crud, schemas
 from app.dependencies import get_current_user, get_chef_or_admin_user, get_officiant_or_admin_user
 
-router = APIRouter(prefix="/orders", tags=["orders"])
+router = APIRouter(prefix="/rostov_api/orders", tags=["orders"])
 
 @router.post("/", response_model=schemas.Order, status_code=status.HTTP_201_CREATED)
 async def create_order(

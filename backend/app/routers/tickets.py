@@ -4,8 +4,9 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.database import get_db
 from app import crud, schemas
 from app.dependencies import get_current_user, get_qr_user
+import uuid
 
-router = APIRouter(prefix="/tickets", tags=["tickets"])
+router = APIRouter(prefix="/rostov_api/tickets", tags=["tickets"])
 
 @router.post("/", response_model=schemas.Ticket, status_code=status.HTTP_201_CREATED)
 async def create_ticket(
@@ -14,7 +15,10 @@ async def create_ticket(
     db: AsyncSession = Depends(get_db)
 ):
     try:
-        return await crud.create_ticket(db, ticket, current_user.id)
+        ticket = schemas.TicketCreate(price=ticket.price, qr_code=str(uuid.uuid4()))
+        if await crud.operations_with_user_stars(db, current_user.telegram_id, ticket.price, '-'):
+            return await crud.create_ticket(db, ticket, current_user.id)
+        raise Exception()
     except crud.CRUDError as e:
         raise HTTPException(status_code=400, detail=str(e))
 

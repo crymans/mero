@@ -2,8 +2,9 @@
 from sqlalchemy import select, and_, or_
 from sqlalchemy.ext.asyncio import AsyncSession
 from app import models, schemas
-from typing import List, Optional
+from typing import List, Optional, Literal
 from datetime import datetime, timedelta
+import uuid
 
 class CRUDError(Exception):
     pass
@@ -64,6 +65,21 @@ async def update_user_role(db: AsyncSession, telegram_id: str, role: str):
     await db.commit()
     await db.refresh(user)
     return user
+
+async def operations_with_user_stars(db: AsyncSession, user_id:int, stars_count:int, operation:Literal['+', '-']) -> bool:
+    # try:
+    user = await db.execute(select(models.User).where(models.User.telegram_id == user_id))
+    user = user.scalars().one()
+    if operation == '+':
+        user.balance += stars_count
+    if operation == '-':
+        if user.balance - stars_count < 0:
+            raise Exception()
+        user.balance -= stars_count
+    await db.commit()
+    return True
+    # except Exception as e:
+    #     return False
 
 # Ticket CRUD
 async def get_ticket_by_id(db: AsyncSession, ticket_id: int):
