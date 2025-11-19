@@ -105,12 +105,12 @@
           </div>
 
           <!-- VIP билет -->
-          <div class="ticket-card vip" @mouseenter="activateCard('vip')">
+          <div class="ticket-card vip" @mouseenter="activateCard('vip')" id="ticketsvip">
             <div class="card-glow"></div>
             <div class="ticket-content">
               <div class="ticket-header">
                 <div class="ticket-title-wrapper">
-                  <h3>VIP EXPERIENCE</h3>
+                  <h3>VIP TICKET</h3>
                   <div class="title-underline"></div>
                 </div>
                 <div class="price">

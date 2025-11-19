@@ -93,28 +93,6 @@
               </div>
             </div>
           </div>
-
-          <!-- Статус гостя -->
-          <div class="status-section">
-            <h3>⭐ СТАТУС ГОСТЯ</h3>
-            <div class="status-card" :class="userStatus">
-              <div class="status-icon">
-                <span v-if="userStatus === 'vip'">👑</span>
-                <span v-else-if="userStatus === 'standard'">🎫</span>
-                <span v-else>🚫</span>
-              </div>
-              <div class="status-info">
-                <div class="status-title">{{ statusTitle }}</div>
-                <div class="status-desc">{{ statusDescription }}</div>
-                <div v-if="userStore.ticket" class="status-benefits">
-                  <div v-for="benefit in statusBenefits" :key="benefit" class="benefit-item">
-                    <span class="benefit-icon">✓</span>
-                    <span class="benefit-text">{{ benefit }}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
 
         <!-- Правая колонка - контактные данные -->
@@ -526,7 +504,7 @@ const downloadQRCode = async () => {
 }
 
 const goToTickets = () => {
-  router.push('/')
+  router.push('/rostov_party')
   setTimeout(() => {
     const ticketsSection = document.getElementById('tickets')
     if (ticketsSection) {
@@ -536,7 +514,7 @@ const goToTickets = () => {
 }
 
 const goToMenu = () => {
-  router.push('/menu')
+  router.push('/rostov_party/menu')
 }
 
 const formatDate = (dateString: string) => {

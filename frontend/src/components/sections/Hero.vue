@@ -32,7 +32,7 @@
 
       <!-- CTA Buttons -->
       <div class="cta-buttons">
-        <button class="neon-btn pink" @click="scrollToTickets">
+        <button class="neon-btn pink" @click="scrollToTicketsVip">
           <span class="btn-text">БРОНЬ СТОЛА</span>
           <div class="neon-glow"></div>
         </button>
@@ -52,11 +52,15 @@
 
 <script setup lang="ts">
 const emit = defineEmits<{
-  scrollToTickets: []
+  scrollToTickets: [],
+  scrollToTicketsVip: []
 }>();
 
 const scrollToTickets = () => {
-  emit('scrollToTickets');
+  emit(`scrollToTickets`);
+};
+const scrollToTicketsVip = () => {
+  emit(`scrollToTicketsVip`);
 };
 </script>
 

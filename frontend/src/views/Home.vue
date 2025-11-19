@@ -15,6 +15,7 @@
       :user="userStore.user"
       :has-ticket="userStore.hasTicket"
       @scroll-to-tickets="scrollToTickets" 
+      @scroll-to-tickets-vip="scrollToTicketsVip" 
     />
     <LineupSection />
     <TicketsSection 
@@ -63,6 +64,12 @@ onMounted(async () => {
 
 const scrollToTickets = () => {
   const element = document.getElementById('tickets')
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth' })
+  }
+}
+const scrollToTicketsVip = () => {
+  const element = document.getElementById('ticketsvip')
   if (element) {
     element.scrollIntoView({ behavior: 'smooth' })
   }
