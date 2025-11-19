@@ -12,7 +12,7 @@ async def init_test_data():
             
             # 1. Создаем тестового админа
             admin_data = schemas.UserCreate(
-                id="admin",
+                telegram_id="971495895",
                 username="admin_user",
                 first_name="Администратор",
                 last_name="Системный",
@@ -23,7 +23,7 @@ async def init_test_data():
                 admin_user = await crud.create_user(db, admin_data)
                 print(admin_user)
                 # Обновляем роль на admin
-                await crud.update_user_role(db, "admin", "admin")
+                await crud.update_user_role(db, "971495895", "admin")
                 print("✅ Тестовый админ создан")
             except crud.CRUDError as e:
                 if "already exists" in str(e):
@@ -34,8 +34,53 @@ async def init_test_data():
             # 2. Создаем тестовые продукты
             test_products = [
                 {
-                    "name": "Jack Daniels",
-                    "description": "Классический виски с карамельными нотами",
+                    "name": "9 шотов из ликера",
+                    "description": "3 малина, 3 апельсин, 3 мандарин",
+                    "price": 1800,
+                    "category": "drink",
+                    "count": 100,
+                    "is_for_table": True,
+                    "image_url": None
+                },
+                {
+                    "name": "27 шотов из ликера",
+                    "description": "9 малина, 9 апельсин, 9 мандарин",
+                    "price": 4500,
+                    "category": "drink",
+                    "count": 100,
+                    "is_for_table": True,
+                    "image_url": None
+                },
+                {
+                    "name": "Ликер апельсин",
+                    "description": "Апельсиновый ликер",
+                    "price": 250,
+                    "category": "drink",
+                    "count": 100,
+                    "is_for_table": False,
+                    "image_url": None
+                },
+                {
+                    "name": "Ликер апельсин",
+                    "description": "Апельсиновый ликер",
+                    "price": 250,
+                    "category": "drink",
+                    "count": 100,
+                    "is_for_table": False,
+                    "image_url": None
+                },
+                                                {
+                    "name": "Ликер апельсин",
+                    "description": "Апельсиновый ликер",
+                    "price": 250,
+                    "category": "drink",
+                    "count": 100,
+                    "is_for_table": False,
+                    "image_url": None
+                },
+                {
+                    "name": "Отвертка",
+                    "description": "Водка с апельсиновым соком",
                     "price": 350.0,
                     "category": "drink",
                     "count": 50,
@@ -43,84 +88,129 @@ async def init_test_data():
                     "image_url": None
                 },
                 {
-                    "name": "Jameson",
-                    "description": "Ирландский виски с мягким вкусом",
-                    "price": 320.0,
+                    "name": "Виски-кола",
+                    "description": "Виски с колой :)",
+                    "price": 350.0,
                     "category": "drink",
                     "count": 40,
                     "is_for_table": False,
                     "image_url": None
                 },
                 {
-                    "name": "Red Bull",
-                    "description": "Энергетический напиток",
-                    "price": 200.0,
+                    "name": "Куба Либре",
+                    "description": "Виски, кола, лайм",
+                    "price": 370.0,
+                    "category": "drink",
+                    "count": 40,
+                    "is_for_table": False,
+                    "image_url": None
+                },
+                {
+                    "name": "Ёрш",
+                    "description": "Водка, пиво",
+                    "price": 300.0,
                     "category": "drink",
                     "count": 100,
                     "is_for_table": False,
                     "image_url": None
                 },
                 {
-                    "name": "Coca-Cola",
-                    "description": "Классическая газировка",
-                    "price": 150.0,
+                    "name": "Ликер малина",
+                    "description": "Малиновый ликер",
+                    "price": 250,
+                    "category": "drink",
+                    "count": 100,
+                    "is_for_table": False,
+                    "image_url": None
+                },
+                                {
+                    "name": "Ликер апельсин",
+                    "description": "Апельсиновый ликер",
+                    "price": 250,
+                    "category": "drink",
+                    "count": 100,
+                    "is_for_table": False,
+                    "image_url": None
+                },
+                  {
+                    "name": "Ликер мандарин",
+                    "description": "Мандариновый ликер",
+                    "price": 250,
+                    "category": "drink",
+                    "count": 100,
+                    "is_for_table": False,
+                    "image_url": None
+                },
+                                  {
+                    "name": "Виски",
+                    "description": "Виски в стакане",
+                    "price": 350,
+                    "category": "drink",
+                    "count": 100,
+                    "is_for_table": False,
+                    "image_url": None
+                },
+                                  {
+                    "name": "Коньяк",
+                    "description": "Коньяк в стакане",
+                    "price": 350,
                     "category": "drink",
                     "count": 100,
                     "is_for_table": False,
                     "image_url": None
                 },
                 {
-                    "name": "Бургер",
-                    "description": "Сочный бургер с говядиной и овощами",
-                    "price": 450.0,
-                    "category": "food",
+                    "name": "Пиво",
+                    "description": "Пиво 0.5л светлое",
+                    "price": 200,
+                    "category": "drink",
+                    "count": 100,
+                    "is_for_table": False,
+                    "image_url": None
+                },
+                {
+                    "name": "Пиво",
+                    "description": "Пиво 0.5л темное",
+                    "price": 200,
+                    "category": "drink",
+                    "count": 100,
+                    "is_for_table": False,
+                    "image_url": None
+                },
+                {
+                    "name": "Энергетик",
+                    "description": "Энергетик на выбор",
+                    "price": 200,
+                    "category": "drink",
+                    "count": 100,
+                    "is_for_table": False,
+                    "image_url": None
+                },
+                {
+                    "name": "Сок",
+                    "description": "Сок 250мл в асссортименте",
+                    "price": 150,
+                    "category": "drink",
+                    "count": 100,
+                    "is_for_table": False,
+                    "image_url": None
+                },
+                {
+                    "name": "Вода",
+                    "description": "Вода 0.5л",
+                    "price": 70.0,
+                    "category": "drink",
                     "count": 30,
                     "is_for_table": False,
                     "image_url": None
                 },
                 {
-                    "name": "Картофель фри",
-                    "description": "Хрустящий картофель с солью",
-                    "price": 200.0,
+                    "name": "Хот-Дог",
+                    "description": "Сочный хот-дог с мясной сосиской",
+                    "price": 250.0,
                     "category": "food",
                     "count": 50,
                     "is_for_table": False,
-                    "image_url": None
-                },
-                {
-                    "name": "Куриные крылья",
-                    "description": "Острые куриные крылья в соусе",
-                    "price": 350.0,
-                    "category": "food",
-                    "count": 25,
-                    "is_for_table": False,
-                    "image_url": None
-                },
-                {
-                    "name": "Салат Цезарь",
-                    "description": "Классический салат с курицей и соусом цезарь",
-                    "price": 300.0,
-                    "category": "food",
-                    "count": 20,
-                    "is_for_table": False,
-                    "image_url": None
-                },
-                {
-                    "name": "VIP Бутылка шампанского",
-                    "description": "Премиальное шампанское для VIP гостей",
-                    "price": 2500.0,
-                    "category": "drink",
-                    "count": 10,
-                    "is_for_table": True,
-                    "image_url": None
-                },
-                {
-                    "name": "Фруктовая тарелка",
-                    "description": "Свежие фрукты для стола",
-                    "price": 800.0,
-                    "category": "food",
-                    "count": 15,
-                    "is_for_table": True,
                     "image_url": None
                 }
             ]

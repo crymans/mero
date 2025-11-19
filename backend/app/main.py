@@ -6,7 +6,7 @@ from app.init_data import init_test_data
 from app.routers import users, tickets, orders, products, admin
 from .middleware import register_middleware
 
-app = FastAPI(title="Event Management API")
+app = FastAPI(title="Event Management API", docs_url='/rostov_api/')
 
 # Настройки CORS
 app.add_middleware(
