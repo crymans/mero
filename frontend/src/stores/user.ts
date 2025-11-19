@@ -28,6 +28,7 @@ export const useUserStore = defineStore('user', {
     user: null as User | null,
     ticket: null as Ticket | null,
     isLoading: false,
+    purchase_link:'',
     error: null as string | null
   }),
 
@@ -59,8 +60,8 @@ export const useUserStore = defineStore('user', {
       this.error = null
       
       try {
-        const userData = await apiClient.get(`${API_CONFIG.ENDPOINTS.USERS}/me`, {
-          'X-User-Telegram-ID': telegramId
+        const userData = await apiClient.post(`${API_CONFIG.ENDPOINTS.USERS}/`, {
+          'user-data': telegramId
         })
         
         this.user = userData
@@ -69,11 +70,13 @@ export const useUserStore = defineStore('user', {
       } catch (error: any) {
         if (error.message.includes('404') || error.message.includes('not found')) {
           await this.registerUser(telegramId)
-        } else {
-          this.error = error.message
-          console.error('User initialization error:', error)
         }
-      } finally {
+        //  else {
+        //   this.error = error.message
+        //   console.error('User initialization error:', error)
+        // }
+      } 
+      finally {
         this.isLoading = false
       }
     },
@@ -89,10 +92,10 @@ export const useUserStore = defineStore('user', {
             username: userData?.username || null,
             first_name: userData?.first_name || null,
             last_name: userData?.last_name || null,
-            phone: userData?.phone || null
+            phone: userData?.phone || null,
           },
           {
-            'X-User-Telegram-ID': telegramId
+            'user-data': telegramId
           }
         )
 
@@ -108,7 +111,7 @@ export const useUserStore = defineStore('user', {
     async fetchUserTicket(telegramId: string) {
       try {
         const ticketData = await apiClient.get(`${API_CONFIG.ENDPOINTS.TICKETS}/my`, {
-          'X-User-Telegram-ID': telegramId
+          'user-data': telegramId
         })
         
         this.ticket = ticketData
@@ -118,6 +121,21 @@ export const useUserStore = defineStore('user', {
         }
       }
     },
+    async createPurchase(telegramId: string, stars:number) {
+      try {
+        const purchaseData = await apiClient.get(`${API_CONFIG.ENDPOINTS.USERS}/purchase?stars_amount=${stars}`, {
+          'user-data': telegramId
+        })
+        
+        this.purchase_link = purchaseData
+        console.log(this.purchase_link)
+      } catch (error: any) {
+        if (!error.message.includes('404')) {
+          console.error('Failed to fetch purchase:', error)
+        }
+      }
+    },
+    
 
     async buyTicket(telegramId: string, ticketType: string) {
       this.isLoading = true
@@ -127,16 +145,15 @@ export const useUserStore = defineStore('user', {
         const price = ticketType === 'vip' ? 1000 : 500
         
         // Генерируем базовый qr_code, но бэкенд может его перезаписать
-        const qrCode = `TICKET_${Date.now()}_${telegramId}_${ticketType}`
         
         const ticketData = await apiClient.post(
           API_CONFIG.ENDPOINTS.TICKETS,
           {
-            qr_code: qrCode,
-            price: price
+            price: price,
+            qr_code: '12345'
           },
           {
-            'X-User-Telegram-ID': telegramId
+            'user-data': telegramId
           }
         )
 
@@ -145,7 +162,7 @@ export const useUserStore = defineStore('user', {
         return ticketData
         
       } catch (error: any) {
-        this.error = error.message
+        this.error = 'Пополните баланс в профиле!'
         throw error
       } finally {
         this.isLoading = false
@@ -166,7 +183,7 @@ export const useUserStore = defineStore('user', {
           `${API_CONFIG.ENDPOINTS.USERS}/me`,
           updateData,
           {
-            'X-User-Telegram-ID': telegramId
+            'user-data': telegramId
           }
         )
 

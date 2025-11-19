@@ -1,7 +1,7 @@
 <template>
   <div class="menu-page">
     <div class="container">
-      <MenuHeader />
+      <MenuHeader style="margin-top: 15%;" />
       
       <!-- Элемент перенаправления на корзину -->
       <CartRedirect 

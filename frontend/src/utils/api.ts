@@ -21,9 +21,11 @@ export class ApiClient {
       method: options.method || 'GET',
       headers: {
         'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Access-Control-Allow-Origin' : 'http://localost:3000',
         ...options.headers
       },
-      credentials: 'include' // Для работы с куками, если понадобится
+      // credentials: 'include' // Для работы с куками, если понадобится
     }
 
     if (options.body) {

@@ -4,6 +4,7 @@ import { fileURLToPath, URL } from 'node:url'
 
 export default defineConfig({
   plugins: [vue()],
+  base: 'rostov_party/',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
@@ -11,13 +12,7 @@ export default defineConfig({
   },
   server: {
     port: 3000,
-    proxy: {
-      '/api': {
-        target: 'http://localhost:8000',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '/api')
-      }
-    },
-    host: true,
+    
+    host: '0.0.0.0',
   }
 })

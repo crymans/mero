@@ -7,22 +7,18 @@
       class="nav-item"
       :class="{ active: $route.path === item.path }"
     >
-      <div class="nav-icon">
-        <component :is="item.icon" />
-      </div>
+      <div class="nav-icon" v-html="item.icon"></div>
       <span class="nav-label">{{ item.name }}</span>
     </router-link>
 
     <!-- Кнопка админа для соответствующих ролей -->
     <router-link 
       v-if="showAdminButton"
-      to="/admin"
+      to="/rostov_party/admin"
       class="nav-item admin-item"
       :class="{ active: $route.path.startsWith('/admin') || isStaffRoute }"
     >
-      <div class="nav-icon">
-        <AdminIcon />
-      </div>
+      <div class="nav-icon" v-html="adminIcon"></div>
       <span class="nav-label">Admin</span>
     </router-link>
   </nav>
@@ -47,49 +43,41 @@ const isStaffRoute = computed(() => {
   return ['/officiant', '/chef', '/qr-scanner'].includes(route.path)
 })
 
-// Иконки для навигации
-const HomeIcon = {
-  template: `
-    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-    </svg>
-  `
-}
+// SVG иконки в виде строк
+const homeIcon = `
+  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+          d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+  </svg>
+`
 
-const MenuIcon = {
-  template: `
-    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-            d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
-    </svg>
-  `
-}
+const menuIcon = `
+  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+          d="M4 6h16M4 12h16M4 18h16"/>
+  </svg>
+`
 
-const ProfileIcon = {
-  template: `
-    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-    </svg>
-  `
-}
+const profileIcon = `
+  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+          d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+  </svg>
+`
 
-const AdminIcon = {
-  template: `
-    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-    </svg>
-  `
-}
+const adminIcon = `
+  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+          d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+  </svg>
+`
 
 const navItems = [
-  { path: '/', name: 'Главная', icon: HomeIcon },
-  { path: '/menu', name: 'Меню', icon: MenuIcon },
-  { path: '/profile', name: 'Профиль', icon: ProfileIcon }
+  { path: '/rostov_party/', name: 'Главная', icon: homeIcon },
+  { path: '/rostov_party/menu', name: 'Меню', icon: menuIcon },
+  { path: '/rostov_party/profile', name: 'Профиль', icon: profileIcon }
 ]
 </script>
 
@@ -117,6 +105,10 @@ const navItems = [
   color: #666;
   transition: all 0.3s ease;
   position: relative;
+}
+
+.nav-item:hover {
+  color: #888;
 }
 
 .nav-item.active {
@@ -148,21 +140,56 @@ const navItems = [
   width: 24px;
   height: 24px;
   margin-bottom: 0.25rem;
+  transition: transform 0.2s ease;
+}
+
+.nav-item:hover .nav-icon {
+  transform: translateY(-2px);
 }
 
 .nav-label {
   font-size: 0.7rem;
   font-weight: 500;
+  transition: transform 0.2s ease;
+}
+
+.nav-item:hover .nav-label {
+  transform: translateY(1px);
 }
 
 /* Анимация для активного состояния */
 .nav-item.active .nav-icon {
   animation: pulse 2s infinite;
+  filter: drop-shadow(0 0 2px currentColor);
 }
 
 @keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
+  0%, 100% { 
+    transform: scale(1); 
+    opacity: 1;
+  }
+  50% { 
+    transform: scale(1.1); 
+    opacity: 0.8;
+  }
+}
+
+/* Улучшенная анимация для админской кнопки */
+.admin-item.active .nav-icon {
+  animation: pulse-cyan 2s infinite;
+}
+
+@keyframes pulse-cyan {
+  0%, 100% { 
+    transform: scale(1); 
+    opacity: 1;
+    filter: drop-shadow(0 0 2px #00ffff);
+  }
+  50% { 
+    transform: scale(1.1); 
+    opacity: 0.8;
+    filter: drop-shadow(0 0 4px #00ffff);
+  }
 }
 
 /* Адаптивность */

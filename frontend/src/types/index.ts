@@ -36,6 +36,7 @@ export interface User {
   last_name: string | null
   phone: string | null
   role: string
+  balance: number
   created_at: string
 }
 

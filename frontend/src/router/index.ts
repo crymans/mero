@@ -6,12 +6,12 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { useUserStore } from '@/stores/user'
 
 const routes = [
-  { path: '/', component:Home },
-  { path: '/menu', component: Menu },
-  { path: '/profile', component: Profile },
+  { path: '/rostov_party', component: Home },
+  { path: '/rostov_party/menu', component: Menu },
+  { path: '/rostov_party/profile', component: Profile },
   // Админские маршруты
   {
-    path: '/admin',
+    path: '/rostov_party/admin',
     name: 'Admin',
     component: () => import('@/components/admin/AdminPanel.vue'),
     meta: { requiresAuth: true, requiredRole: ['admin', 'chef', 'qr', 'officiant'] }

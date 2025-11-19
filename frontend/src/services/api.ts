@@ -8,11 +8,14 @@ class ApiService {
 
   private async request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
     const url = `${API_BASE_URL}${endpoint}`
-    
+    let u_id = window.Telegram.WebApp.initData
+    if (typeof u_id !== 'string'){
+        u_id = ''
+    }
     const config: RequestInit = {
       headers: {
         'Content-Type': 'application/json',
-        'user-data': window.Telegram.WebApp.initData,
+        'user-data': u_id,
         ...options.headers,
       },
       ...options,

@@ -11,7 +11,7 @@
       <button @click="userStore.clearError()" class="close-btn">×</button>
     </div>
 
-    <HeroSection 
+    <HeroSection style="margin-top: 10%;" 
       :user="userStore.user"
       :has-ticket="userStore.hasTicket"
       @scroll-to-tickets="scrollToTickets" 
