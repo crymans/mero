@@ -24,10 +24,10 @@
       </div>
 
       <!-- Ошибка загрузки -->
-      <div v-if="ordersStore.error" class="error-state">
+      <!-- <div v-if="ordersStore.error" class="error-state">
         <p>Ошибка: {{ ordersStore.error }}</p>
         <button @click="loadProducts" class="retry-btn">Попробовать снова</button>
-      </div>
+      </div> -->
 
       <ProductsGrid 
         :products="filteredProducts"
@@ -57,12 +57,12 @@
     />
 
     <!-- Уведомление о добавлении в корзину -->
-    <div v-if="showAddNotification" class="add-notification">
+    <!-- <div v-if="showAddNotification" class="add-notification">
       <div class="notification-content">
         <span class="notification-icon">✅</span>
         <span class="notification-text">Товар добавлен в корзину!</span>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 

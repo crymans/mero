@@ -129,6 +129,7 @@ export const useUserStore = defineStore('user', {
         
         this.purchase_link = purchaseData
         console.log(this.purchase_link)
+        // window.Telegram.WebApp.
       } catch (error: any) {
         if (!error.message.includes('404')) {
           console.error('Failed to fetch purchase:', error)

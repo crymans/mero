@@ -8,10 +8,10 @@
         Текущая роль: <span :class="authStore.userRole">{{ getRoleName(authStore.userRole) }}</span>
       </div>
       <!-- Добавим отладочную информацию -->
-      <div v-if="debugInfo" class="debug-info">
+      <!-- <div v-if="debugInfo" class="debug-info">
         <p>User data: {{ JSON.stringify(authStore.user) }}</p>
         <p>Computed role: {{ authStore.userRole }}</p>
-      </div>
+      </div> -->
     </div>
 
     <!-- Остальной код без изменений -->

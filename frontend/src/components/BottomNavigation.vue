@@ -16,7 +16,7 @@
       v-if="showAdminButton"
       to="/rostov_party/admin"
       class="nav-item admin-item"
-      :class="{ active: $route.path.startsWith('/admin') || isStaffRoute }"
+      :class="{ active: isStaffRoute }"
     >
       <div class="nav-icon" v-html="adminIcon"></div>
       <span class="nav-label">Admin</span>
@@ -35,6 +35,7 @@ const userStore = useUserStore()
 // Проверяем, нужно ли показывать кнопку админа
 const showAdminButton = computed(() => {
   const userRole = userStore.user?.role
+  console.log(userStore.user)
   return userRole && ['admin', 'qr', 'chef', 'officiant'].includes(userRole)
 })
 

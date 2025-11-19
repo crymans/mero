@@ -26,7 +26,7 @@
                 </div>
                 <div class="price">
                   <span class="old-price">900 ₽</span>
-                  <span class="current-price">750 ₽</span>
+                  <span class="current-price">500 ₽</span>
                 </div>
                 <div class="ticket-tag">со скидкой</div>
               </div>
@@ -49,7 +49,9 @@
                 </div>
               </div>
               <div class="ticket-conditions">
-                <p>✓ Сделай репост мероприятия</p>
+                <p>✓ Сделай репост мероприятия </p>
+                <p>✓ до 01.12.2025 - 500p </p>
+                <p>✓ до 12.12.2025 - 600p </p>
                 <p>✓ Покажи на входе</p>
               </div>
               <button class="ticket-btn basic-btn" @click="buyTicket('standard')">
@@ -135,6 +137,7 @@
                 </div>
               </div>
               <div class="ticket-conditions">
+                <p>✓ Без проверки репоста</p>
                 <p>✓ Гарантированное место</p>
                 <p>✓ Лучший сервис</p>
               </div>

@@ -1,4 +1,3 @@
-<!-- components/admin/UserManagement.vue -->
 <template>
   <div class="user-management">
     <div class="section-header">
@@ -6,10 +5,21 @@
       <div class="header-stats">
         <span class="stat">Всего: {{ users.length }}</span>
         <span class="stat">Админы: {{ adminCount }}</span>
+        <span class="stat">Пользователи: {{ memberCount }}</span>
       </div>
     </div>
 
-    <div class="users-grid">
+    <div class="controls">
+      <button 
+        @click="loadUsers" 
+        :disabled="isLoading"
+        class="refresh-btn"
+      >
+        🔄 Обновить
+      </button>
+    </div>
+
+    <div class="users-grid" v-if="users.length > 0">
       <div 
         v-for="user in users" 
         :key="user.id"
@@ -23,10 +33,17 @@
           <h3 class="user-name">
             {{ user.first_name || 'Без имени' }} {{ user.last_name || '' }}
           </h3>
-          <p class="user-telegram">@{{ user.username || 'без username' }}</p>
+          <p class="user-telegram">
+            <span v-if="user.username">@{{ user.username }}</span>
+            <span v-else>без username</span>
+          </p>
+          <p class="user-telegram-id">Telegram ID: {{ user.telegram_id }}</p>
           <p class="user-phone" v-if="user.phone">📱 {{ user.phone }}</p>
+          <p class="user-balance" v-if="user.balance !== undefined">
+            Баланс: {{ user.balance }} ₽
+          </p>
           <p class="user-joined">
-            Зарегистрирован: {{ new Date(user.created_at).toLocaleDateString() }}
+            Зарегистрирован: {{ formatDate(user.created_at) }}
           </p>
         </div>
 
@@ -36,10 +53,11 @@
             <select 
               :value="user.role" 
               @change="updateUserRole(user.telegram_id, $event.target.value)"
-              :disabled="user.role === 'admin'"
+              :disabled="user.role === 'admin' || isLoading"
               :class="{ disabled: user.role === 'admin' }"
             >
-              <option value="user">👤 Пользователь</option>
+              <option value="member">👤 Пользователь</option>
+              <option value="vip">⭐ VIP</option>
               <option value="qr">📱 QR Scanner</option>
               <option value="chef">👨‍🍳 Повар</option>
               <option value="officiant">💁 Официант</option>
@@ -55,7 +73,7 @@
     </div>
 
     <!-- Состояние загрузки -->
-    <div v-if="loading" class="loading-state">
+    <div v-if="isLoading" class="loading-state">
       <div class="loading-spinner"></div>
       <p>Загружаем пользователей...</p>
     </div>
@@ -65,24 +83,30 @@
       <p>❌ Ошибка: {{ error }}</p>
       <button @click="loadUsers" class="retry-btn">Попробовать снова</button>
     </div>
+
+    <!-- Состояние пустого списка -->
+    <div v-if="!isLoading && users.length === 0" class="empty-state">
+      <p>Пользователи не найдены</p>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
-import { useAuthStore } from '@/stores/auth'
-import { createApiService } from '@/services/api'
-import type { User } from '@/types'
+import { useAdminStore } from '@/stores/admin'
+import type { User } from '@/stores/admin'
 
-const authStore = useAuthStore()
-const apiService = createApiService(authStore.telegramId)
-
+// Создаем локальные реактивные переменные
 const users = ref<User[]>([])
-const loading = ref(false)
+const isLoading = ref(false)
 const error = ref<string | null>(null)
 
 const adminCount = computed(() => {
   return users.value.filter(user => user.role === 'admin').length
+})
+
+const memberCount = computed(() => {
+  return users.value.filter(user => user.role === 'member').length
 })
 
 const getUserInitials = (user: User) => {
@@ -93,7 +117,9 @@ const getUserInitials = (user: User) => {
 
 const getRoleName = (role: string) => {
   const names: Record<string, string> = {
+    'member': '👤 Пользователь',
     'user': '👤 Пользователь',
+    'vip': '⭐ VIP',
     'qr': '📱 QR Scanner',
     'chef': '👨‍🍳 Повар',
     'officiant': '💁 Официант',
@@ -102,26 +128,43 @@ const getRoleName = (role: string) => {
   return names[role] || role
 }
 
+const formatDate = (dateString: string) => {
+  return new Date(dateString).toLocaleDateString('ru-RU', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit'
+  })
+}
+
 const loadUsers = async () => {
-  loading.value = true
+  isLoading.value = true
   error.value = null
   try {
-    users.value = await apiService.getAllUsers()
+    const adminStore = useAdminStore()
+    await adminStore.fetchAllUsers()
+    users.value = adminStore.users
+    console.log(users.value)
   } catch (err: any) {
-    error.value = err.message || 'Не удалось загрузить пользователей'
+    error.value = err.message || 'Ошибка при загрузке пользователей'
+    console.error('Error loading users:', err)
   } finally {
-    loading.value = false
+    isLoading.value = false
   }
 }
 
 const updateUserRole = async (telegramId: string, newRole: string) => {
-  if (newRole === 'admin') return // Нельзя назначать админа через UI
+  if (newRole === 'admin') return
   
   try {
-    await apiService.updateUserRole(telegramId, newRole)
-    await loadUsers() // Перезагружаем список
+    const adminStore = useAdminStore()
+    await adminStore.updateUserRole(telegramId, newRole)
+    // После успешного обновления перезагружаем список
+    await loadUsers()
   } catch (err: any) {
-    alert('❌ Ошибка при обновлении роли: ' + (err.message || 'Неизвестная ошибка'))
+    error.value = err.message || 'Ошибка при обновлении роли'
+    console.error('Error updating user role:', err)
   }
 }
 

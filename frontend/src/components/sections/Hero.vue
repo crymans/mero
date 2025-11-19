@@ -81,7 +81,7 @@ const scrollToTickets = () => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.762);
+  background: rgba(0, 0, 0, 0.9);
   /* background: 
     radial-gradient(circle at 20% 80%, rgba(255, 0, 255, 0.1) 0%, transparent 50%),
     radial-gradient(circle at 80% 20%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
