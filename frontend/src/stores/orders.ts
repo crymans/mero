@@ -37,7 +37,7 @@ export const useOrdersStore = defineStore('orders', {
     async fetchUserOrders(telegramId: string) {
       this.isLoading = true
       try {
-        this.orders = await apiClient.get(API_CONFIG.ENDPOINTS.ORDERS, {
+        this.orders = await apiClient.get(API_CONFIG.ENDPOINTS.ORDERS+'/my', {
           'user-data': telegramId
         })
       } catch (error) {

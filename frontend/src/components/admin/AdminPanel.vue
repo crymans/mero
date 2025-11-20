@@ -85,7 +85,7 @@ const debugInfo = ref(true) // Включите для отладки, зате�
 // Все возможные вкладки с требованиями к ролям
 const allTabs = [
   { id: 'users', name: 'Пользователи', icon: '👥', roles: ['admin'] },
-  { id: 'products', name: 'Продукты', icon: '🍔', roles: ['admin'] },
+  { id: 'products', name: 'Продукты', icon: '🍔', roles: ['admin', 'chef'] },
   { id: 'orders', name: 'Все заказы', icon: '📦', roles: ['chef', 'admin'] },
   { id: 'fulfilled', name: 'Выполненные', icon: '✅', roles: ['officiant', 'admin'] },
   { id: 'qr', name: 'QR Сканер', icon: '📱', roles: ['qr', 'admin'] },
