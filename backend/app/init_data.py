@@ -229,46 +229,6 @@ async def init_test_data():
 
             # 3. Создаем тестовых пользователей с разными ролями
             test_users = [
-                {
-                    "id": "officiant_1",
-                    "username": "officiant_user",
-                    "first_name": "Анна",
-                    "last_name": "Официантова",
-                    "phone": "+79182223344",
-                    "role": "officiant"
-                },
-                {
-                    "id": "chef_1",
-                    "username": "chef_user",
-                    "first_name": "Иван",
-                    "last_name": "Поваров",
-                    "phone": "+79183334455",
-                    "role": "chef"
-                },
-                {
-                    "id": "qr_1",
-                    "username": "qr_user",
-                    "first_name": "Петр",
-                    "last_name": "Сканеров",
-                    "phone": "+79184445566",
-                    "role": "qr"
-                },
-                {
-                    "id": "vip_user",
-                    "username": "vip_client",
-                    "first_name": "Мария",
-                    "last_name": "VIP",
-                    "phone": "+79185556677",
-                    "role": "vip"
-                },
-                {
-                    "id": "regular_user",
-                    "username": "regular_client",
-                    "first_name": "Алексей",
-                    "last_name": "Обычный",
-                    "phone": "+79186667788",
-                    "role": "member"
-                }
             ]
 
             users_created = 0
@@ -292,16 +252,6 @@ async def init_test_data():
 
             # 4. Создаем тестовые билеты для некоторых пользователей
             test_tickets = [
-                {
-                    "user_telegram_id": "vip_user",
-                    "qr_code": "VIP_TICKET_001",
-                    "price": 1300.0
-                },
-                {
-                    "user_telegram_id": "regular_user",
-                    "qr_code": "STANDARD_TICKET_001",
-                    "price": 500.0
-                }
             ]
 
             tickets_created = 0

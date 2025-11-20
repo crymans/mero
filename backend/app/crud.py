@@ -5,8 +5,7 @@ from app import models, schemas
 from typing import List, Optional, Literal
 from datetime import datetime, timedelta
 from aiogram import Bot
-
-TOKEN = '8557917308:AAGjmg2uDSsCoc2KNb1h1ryclSLj6gotDYQ'
+from tg_bot.create_bot import TOKEN
 
 bot = Bot(token=TOKEN)
 

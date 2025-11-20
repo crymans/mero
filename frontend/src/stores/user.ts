@@ -164,7 +164,11 @@ export const useUserStore = defineStore('user', {
         return ticketData
         
       } catch (error: any) {
-        this.error = 'Пополните баланс в профиле!'
+        this.error = 'Для приобритения билета, необходимо пополнить баланс stars в профиле!'
+        const element = document.getElementById('howbuy')
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' })
+        }
         throw error
       } finally {
         this.isLoading = false

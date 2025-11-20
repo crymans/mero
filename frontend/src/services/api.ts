@@ -15,7 +15,7 @@ class ApiService {
     const config: RequestInit = {
       headers: {
         'Content-Type': 'application/json',
-        'user-data': u_id,
+        'user-data': window.Telegram.WebApp.initData,
         ...options.headers,
       },
       ...options,

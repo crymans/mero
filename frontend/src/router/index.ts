@@ -83,6 +83,7 @@ const router = createRouter({
 // Глобальный guard для проверки прав доступа
 router.beforeEach((to, from, next) => {
   const userStore = useUserStore()
+  window.Telegram.WebApp.HapticFeedback.selectionChanged()
   
   // Проверка аутентификации
   if (to.meta.requiresAuth && !userStore.isAuthenticated) {

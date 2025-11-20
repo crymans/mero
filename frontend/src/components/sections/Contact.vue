@@ -3,7 +3,7 @@
     <div class="container">
       <h2 class="section-title neon-text">КОНТАКТЫ</h2>
       <div class="contact-links">
-        <a href="https://t.me/leomaxslavanikitos" class="contact-link neon-hover">TELEGRAM</a>
+        <a href="https://t.me/zagruzgapartyyyy" class="contact-link neon-hover">TELEGRAM</a>
         <a href="https://vk.com/slavatoxisss" class="contact-link neon-hover">VK</a>
       </div>
     </div>
