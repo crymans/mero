@@ -36,7 +36,7 @@
 
       <!-- Управление продуктами (только admin) -->
       <div v-if="activeTab === 'products'" class="tab-pane">
-        <ProductManagement v-if="authStore.hasPermission('admin')" />
+        <ProductManagement v-if="authStore.hasPermission('chef')" />
         <NoAccess v-else :required-role="'Администратор'" />
       </div>
 
