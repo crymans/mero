@@ -18,7 +18,7 @@ async def get_user_by_telegram_id(db: AsyncSession, telegram_id: str):
 
 async def get_user_by_id(db: AsyncSession, user_id: int):
     result = await db.execute(
-        select(models.User).where(models.User.id == user_id)
+        select(models.User).where(models.User.telegram_id == user_id)
     )
     return result.scalar_one_or_none()
 
@@ -66,10 +66,10 @@ async def update_user_role(db: AsyncSession, telegram_id: str, role: str):
     await db.refresh(user)
     return user
 
-async def operations_with_user_stars(db: AsyncSession, user_id:int, stars_count:int, operation:Literal['+', '-']) -> bool:
+async def operations_with_user_stars(db: AsyncSession, user_id:str, stars_count:int, operation:Literal['+', '-']) -> bool:
     # try:
     user = await db.execute(select(models.User).where(models.User.telegram_id == user_id))
-    user = user.scalars().one()
+    user = user.scalars().one_or_none()
     if operation == '+':
         user.balance += stars_count
     if operation == '-':
@@ -200,8 +200,7 @@ async def get_recent_fulfilled_orders(db: AsyncSession, minutes: int = 20):
     result = await db.execute(
         select(models.Order)
         .where(and_(
-            models.Order.is_fulfilled == True,
-            models.Order.created_at >= time_threshold
+            models.Order.is_fulfilled == True
         ))
         .order_by(models.Order.created_at.desc())
     )
@@ -225,19 +224,22 @@ async def create_order(db: AsyncSession, order: schemas.OrderCreate, user_id: in
     active_orders_count = await get_user_active_orders_count(db, user_id)
     if active_orders_count >= 2 and user.role != 'vip':
         raise CRUDError("Maximum active orders limit reached")
-    
+    total_price = 0
     if user.role != 'vip':
         product_ids = [int(pid) for pid in order.products_ids.split(',') if pid.strip()]
         for product_id in product_ids:
             product = await get_product(db, product_id)
+            total_price += product.price
             if product and product.is_for_table:
                 raise CRUDError("Non-VIP users cannot order table products")
+    if await operations_with_user_stars(db, user_id, total_price, '-'):
     
-    db_order = models.Order(**order.dict(), user_id=user_id)
-    db.add(db_order)
-    await db.commit()
-    await db.refresh(db_order)
-    return db_order
+        db_order = models.Order(**order.dict(), user_id=user_id)
+        db.add(db_order)
+        await db.commit()
+        await db.refresh(db_order)
+        return db_order
+    raise CRUDError("Недостаточно средств!")
 
 async def update_order_fulfillment(db: AsyncSession, order_id: int, is_fulfilled: bool):
     order = await get_order_by_id(db, order_id)

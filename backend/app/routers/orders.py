@@ -14,7 +14,8 @@ async def create_order(
     db: AsyncSession = Depends(get_db)
 ):
     try:
-        return await crud.create_order(db, order, current_user.id)
+        print(current_user.telegram_id)
+        return await crud.create_order(db, order, current_user.telegram_id)
     except crud.CRUDError as e:
         raise HTTPException(status_code=400, detail=str(e))
 
@@ -25,7 +26,7 @@ async def get_my_orders(
     limit: int = 100,
     db: AsyncSession = Depends(get_db)
 ):
-    return await crud.get_user_orders(db, current_user.id, skip, limit)
+    return await crud.get_user_orders(db, current_user.telegram_id, skip, limit)
 
 @router.get("/", response_model=list[schemas.Order])
 async def get_all_orders(

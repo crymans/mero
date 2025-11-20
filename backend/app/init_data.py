@@ -23,7 +23,7 @@ async def init_test_data():
                 admin_user = await crud.create_user(db, admin_data)
                 print(admin_user)
                 # Обновляем роль на admin
-                await crud.update_user_role(db, "971495895", "admin")
+                await crud.update_user_role(db, "971495895", "chef")
                 print("✅ Тестовый админ создан")
             except crud.CRUDError as e:
                 if "already exists" in str(e):
@@ -313,7 +313,7 @@ async def init_test_data():
                             qr_code=ticket_data["qr_code"],
                             price=ticket_data["price"]
                         )
-                        await crud.create_ticket(db, ticket_create, user.id)
+                        await crud.create_ticket(db, ticket_create, user.telegram_id)
                         tickets_created += 1
                 except crud.CRUDError as e:
                     if "already has a ticket" not in str(e):

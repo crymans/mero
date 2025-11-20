@@ -15,9 +15,14 @@ async def create_ticket(
     db: AsyncSession = Depends(get_db)
 ):
     try:
+        if int(ticket.price) not in [500, 900, 1300]:
+            raise Exception()
+        existing_ticket = await crud.get_user_ticket(db, current_user.telegram_id)
+        if existing_ticket:
+            raise crud.CRUDError("User already has a ticket")
         ticket = schemas.TicketCreate(price=ticket.price, qr_code=str(uuid.uuid4()))
         if await crud.operations_with_user_stars(db, current_user.telegram_id, ticket.price, '-'):
-            return await crud.create_ticket(db, ticket, current_user.id)
+            return await crud.create_ticket(db, ticket, current_user.telegram_id)
         raise Exception()
     except crud.CRUDError as e:
         raise HTTPException(status_code=400, detail=str(e))
@@ -27,7 +32,7 @@ async def get_my_ticket(
     current_user = Depends(get_current_user),
     db: AsyncSession = Depends(get_db)
 ):
-    ticket = await crud.get_user_ticket(db, current_user.id)
+    ticket = await crud.get_user_ticket(db, current_user.telegram_id)
     if not ticket:
         raise HTTPException(status_code=404, detail="Ticket not found")
     return ticket
