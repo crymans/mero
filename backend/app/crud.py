@@ -41,11 +41,14 @@ async def create_user(db: AsyncSession, user: schemas.UserCreate):
     db.add(db_user)
     await db.commit()
     await db.refresh(db_user)
-    await bot.send_message(user.telegram_id, f'''Привет! 👋\n\nРады видеть тебя на нашем мероприятии!\n\n🗓 13 декабря\n
+    try:
+        await bot.send_message(user.telegram_id, f'''Привет! 👋\n\nРады видеть тебя на нашем мероприятии!\n\n🗓 13 декабря\n
 📍 Улица Московская 64\n
 ⏰ С 16:00 до 05:00\n\n
-Билет можно приобристи в мини приложении
-Ждём тебя за яркими впечатлениями! ✨''')
+Билет можно приобристи в мини приложении\n
+Приходи за яркими впечатлениями! ✨''')
+    except:
+        pass
     return db_user
 
 async def update_user(db: AsyncSession, telegram_id: str, user_update: schemas.UserUpdate):
@@ -125,12 +128,15 @@ async def create_ticket(db: AsyncSession, ticket: schemas.TicketCreate, user_id:
     data = {1300:'vip', 900:'fast', 500:'standart'}
     await db.commit()
     await db.refresh(db_ticket)
-    await bot.send_message(user_id, f'''✅ Билет успешно приобретен!\n\nТип: {data[ticket.price]} 🎫\n
+    try:
+        await bot.send_message(user_id, f'''✅ Билет успешно приобретен!\n\nТип: {data[ticket.price]} 🎫\n
 Номер билета: {ticket.qr_code}\n\n
 
 ⚠️ Важно: Репост анонса до 01.12.2025 — стоимость 500р . За реп после этой даты на входе потребуется доплата 100 рублей.
 \n\n
 До встречи 13 декабря! 🎉''')
+    except:
+        pass
     return db_ticket
 
 async def mark_ticket_used(db: AsyncSession, ticket_id: int):
@@ -262,7 +268,17 @@ async def update_order_fulfillment(db: AsyncSession, order_id: int, is_fulfilled
     order.is_fulfilled = is_fulfilled
     await db.commit()
     await db.refresh(order)
-    await bot.send_message(order.user_id, f'🎉 Ваш заказ готов\nСовсем скоро его доставят к столу №{order.table_id}')
+    try:
+        await bot.send_message(order.user_id, f'🎉 Ваш заказ готов\nСовсем скоро его доставят к столу №{order.table_id}')
+    except:
+        pass
+    users = await get_all_users(db)
+    for user in users:
+        if user.role == 'officiant':
+            try:
+                await bot.send_message(user.telegram_id, f'🎉 Один из заказов готов! \nНа сумму {order.total_price}, к столу №{order.table_id} \nПомни, 4 стол - барная стойка\n\nПроверь админ панель для детальной информации!')
+            except:
+                pass
     return order
 
 
