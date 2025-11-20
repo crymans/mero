@@ -5,7 +5,7 @@ from datetime import datetime
 import json
 
 class UserBase(BaseModel):
-    telegram_id: Optional[str] = ''
+    telegram_id: Optional[str]
     username: Optional[str] = None
     first_name: Optional[str] = None
     last_name: Optional[str] = None
