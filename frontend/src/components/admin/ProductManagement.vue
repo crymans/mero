@@ -16,13 +16,13 @@
       >
         <div class="product-image">
           <img 
-            v-if="product.image_url" 
+
             :src="product.image_url" 
             :alt="product.name"
           >
-          <div v-else class="product-image-placeholder">
+          <!-- <div v-else class="product-image-placeholder">
             {{ getProductEmoji(product.category) }}
-          </div>
+          </div> -->
         </div>
         
         <div class="product-info">
@@ -163,6 +163,7 @@ const loadProducts = async () => {
   error.value = null
   try {
     products.value = await apiService.getProducts()
+    console.log(products.value)
   } catch (err: any) {
     error.value = err.message || 'Не удалось загрузить продукты'
   } finally {

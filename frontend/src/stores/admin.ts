@@ -1,9 +1,10 @@
 // stores/admin.ts
 import { defineStore } from 'pinia'
-import { apiClient } from '@/utils/api'
+import { createApiService } from '@/services/api'
 import { API_CONFIG } from '@/config/api'
 import { useUserStore } from '@/stores/user'
 
+const apiClient = createApiService(window.Telegram.WebApp.initData)
 interface User {
   id: number
   telegram_id: string
@@ -88,9 +89,9 @@ export const useAdminStore = defineStore('admin', {
     async fetchAllUsers() {
       this.isLoading = true
       try {
-        const response = await apiClient.get('/admin/users')
-        console.log(response.data)
-        this.users = response.data
+        const response = await apiClient.getAllUsers()
+        console.log(response)
+        this.users = response
       } catch (error) {
         this.error = error instanceof Error ? error.message : 'Failed to fetch users'
         console.error('Error fetching users:', error)
@@ -165,11 +166,9 @@ export const useAdminStore = defineStore('admin', {
 
     async updateUserRole(telegramId: string, role: string) {
       try {
-        const response = await apiClient.patch(
-          `/admin/users/${telegramId}/role`,
-          { role }
-        )
+        const response = await apiClient.updateUserRole(telegramId, role)
         
+      
         // Обновляем пользователя в локальном состоянии
         const userIndex = this.users.findIndex(u => u.telegram_id === telegramId)
         if (userIndex !== -1) {

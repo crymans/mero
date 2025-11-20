@@ -9,6 +9,12 @@
     <div class="card-content">
       <!-- Изображение -->
       <div class="product-image">
+                  <img 
+
+            :src="product.image_url" 
+            :alt="product.name"
+          >
+
         <div class="image-placeholder" :class="product.category">
           {{ getCategoryEmoji(product.category) }}
         </div>

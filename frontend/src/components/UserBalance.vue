@@ -51,6 +51,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import {useUserStore} from '@/stores/user' 
+import router from '../router';
 
 const userStore = useUserStore()
 // Props и emits
@@ -68,8 +69,13 @@ const loading = ref<boolean>(false)
 
 // Вычисляемые свойства
 const isValidAmount = computed(() => {
-  return starsAmount.value > 0 && starsAmount.value <= 10000
+  return starsAmount.value > 0 && starsAmount.value <= 100000
 })
+
+const purchasecallback = (param) =>{
+  console.log(param)
+  router.push('/rostov_api')
+}
 
 // Методы
 const handleTopUp = async () => {
@@ -78,8 +84,8 @@ const handleTopUp = async () => {
   loading.value = true
   try {
     // Эмитируем событие с количеством звезд
-    await userStore.createPurchase('122345', starsAmount.value)
-    
+    let link = await userStore.createPurchase('122345', starsAmount.value)
+    window.Telegram.WebApp.openInvoice(link, purchasecallback)
     // Сброс поля ввода после успешного запроса
     starsAmount.value = 0
   } catch (error) {

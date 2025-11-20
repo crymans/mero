@@ -141,9 +141,10 @@ export const useUserStore = defineStore('user', {
     async buyTicket(telegramId: string, ticketType: string) {
       this.isLoading = true
       this.error = null
+      let ticketsdata = {'vip':1300, 'standart':500, 'fast':900}
       
       try {
-        const price = ticketType === 'vip' ? 1000 : 500
+        const price = ticketsdata[ticketType]
         
         // Генерируем базовый qr_code, но бэкенд может его перезаписать
         

@@ -78,10 +78,14 @@ import ProductsGrid from '@/components/menu/ProductsGrid.vue'
 import FloatingCart from '@/components/menu/FloatingCart.vue'
 import CartModal from '@/components/menu/CartModal.vue'
 import CartRedirect from '@/components/menu/CartRedirect.vue'
+import { createApiService } from '@/services/api'
+
+
 
 const router = useRouter()
 const ordersStore = useOrdersStore()
 const userStore = useUserStore()
+const apiService = createApiService(userStore.user.telegramId)
 
 // Данные страницы
 const products = ref<Product[]>([])
@@ -190,7 +194,7 @@ const placeOrder = async (tableNumber: number) => {
     console.log('Creating order:', orderData)
     
     // Отправляем запрос на создание заказа
-    await ordersStore.createOrder(user.value.telegram_id, orderData)
+    await apiService.createOrder(orderData)
     
     // Успешное создание заказа
     alert(`🎉 Заказ успешно оформлен! Доставка к столу №${tableNumber} через 10-15 минут`)

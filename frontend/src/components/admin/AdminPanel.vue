@@ -89,7 +89,6 @@ const allTabs = [
   { id: 'orders', name: 'Все заказы', icon: '📦', roles: ['chef', 'admin'] },
   { id: 'fulfilled', name: 'Выполненные', icon: '✅', roles: ['officiant', 'admin'] },
   { id: 'qr', name: 'QR Сканер', icon: '📱', roles: ['qr', 'admin'] },
-  { id: 'stats', name: 'Статистика', icon: '📊', roles: ['admin'] }
 ]
 
 // Отфильтрованные вкладки для текущей роли

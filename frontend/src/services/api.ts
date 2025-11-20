@@ -1,7 +1,7 @@
 // services/api.ts
 import type { Product, Order, OrderCreate, User, Ticket } from '@/types'
-
-const API_BASE_URL = 'https://tg-gift-store/rostov_party/api'
+import { API_CONFIG } from '@/config/api'
+const API_BASE_URL = API_CONFIG.BASE_URL
 
 class ApiService {
   constructor(private telegramId: string) {}
@@ -84,7 +84,8 @@ class ApiService {
 
   // Admin endpoints
   async getAllUsers(): Promise<User[]> {
-    return this.request<User[]>('/admin/users')
+    let el = this.request<User[]>('/admin/users')
+    return el
   }
 
   async updateUserRole(telegramId: string, role: string): Promise<User> {
@@ -118,4 +119,4 @@ async deleteProduct(productId: number): Promise<void> {
 }
 
 
-export const createApiService = (telegramId: string) => new ApiService(telegramId)
+export const createApiService = (telegramId: string='') => new ApiService(telegramId)
