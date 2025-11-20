@@ -222,16 +222,13 @@ async def create_order(db: AsyncSession, order: schemas.OrderCreate, user_id: in
         raise CRUDError("User not found")
     
     active_orders_count = await get_user_active_orders_count(db, user_id)
-    if active_orders_count >= 2 and user.role != 'vip':
+    if active_orders_count >= 2:
         raise CRUDError("Maximum active orders limit reached")
     total_price = 0
-    if user.role != 'vip':
-        product_ids = [int(pid) for pid in order.products_ids.split(',') if pid.strip()]
-        for product_id in product_ids:
-            product = await get_product(db, product_id)
-            total_price += product.price
-            if product and product.is_for_table:
-                raise CRUDError("Non-VIP users cannot order table products")
+    product_ids = [int(pid) for pid in order.products_ids.split(',') if pid.strip()]
+    for product_id in product_ids:
+        product = await get_product(db, product_id)
+        total_price += product.price
     if await operations_with_user_stars(db, user_id, total_price, '-'):
     
         db_order = models.Order(**order.dict(), user_id=user_id)

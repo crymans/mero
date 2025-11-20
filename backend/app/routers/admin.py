@@ -3,7 +3,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.database import get_db
 from app import crud, schemas
-from app.dependencies import get_admin_user
+from app.dependencies import get_admin_user, get_chef_or_admin_user
 
 router = APIRouter(prefix="/rostov_api/admin", tags=["admin"])
 
@@ -19,7 +19,7 @@ async def get_all_users(
 
 @router.get("/products", response_model=list[schemas.Product])
 async def get_all_products(
-    current_user: schemas.User = Depends(get_admin_user),
+    current_user: schemas.User = Depends(get_chef_or_admin_user),
     db: AsyncSession = Depends(get_db),
     skip: int = 0,
     limit: int = 100
@@ -53,7 +53,7 @@ async def update_user_role(
 @router.post("/products", response_model=schemas.Product)
 async def create_product(
     product: schemas.ProductCreate,
-    current_user: schemas.User = Depends(get_admin_user),
+    current_user: schemas.User = Depends(get_chef_or_admin_user),
     db: AsyncSession = Depends(get_db)
 ):
     """Создать новый продукт (только для админа)"""
@@ -66,7 +66,7 @@ async def create_product(
 async def update_product(
     product_id: int,
     product: schemas.ProductUpdate,
-    current_user: schemas.User = Depends(get_admin_user),
+    current_user: schemas.User = Depends(get_chef_or_admin_user),
     db: AsyncSession = Depends(get_db)
 ):
     """Обновить продукт (только для админа)"""

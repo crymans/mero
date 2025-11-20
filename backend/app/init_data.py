@@ -23,7 +23,7 @@ async def init_test_data():
                 admin_user = await crud.create_user(db, admin_data)
                 print(admin_user)
                 # Обновляем роль на admin
-                await crud.update_user_role(db, "971495895", "chef")
+                await crud.update_user_role(db, "971495895", "admin")
                 print("✅ Тестовый админ создан")
             except crud.CRUDError as e:
                 if "already exists" in str(e):
