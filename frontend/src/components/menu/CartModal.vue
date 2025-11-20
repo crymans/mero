@@ -22,7 +22,7 @@
           <div class="table-input-section">
             <label class="table-label">
               <span class="label-icon">🪑</span>
-              <span class="label-text">Номер вашего стола</span>
+              <span class="label-text">Номер вашего стола, барная стойка - 4 номер</span>
             </label>
             <div class="table-input-container">
               <input 
