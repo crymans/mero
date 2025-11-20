@@ -4,7 +4,11 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app import models, schemas
 from typing import List, Optional, Literal
 from datetime import datetime, timedelta
-import uuid
+from aiogram import Bot
+
+TOKEN = '8557917308:AAGjmg2uDSsCoc2KNb1h1ryclSLj6gotDYQ'
+
+bot = Bot(token=TOKEN)
 
 class CRUDError(Exception):
     pass
@@ -37,6 +41,11 @@ async def create_user(db: AsyncSession, user: schemas.UserCreate):
     db.add(db_user)
     await db.commit()
     await db.refresh(db_user)
+    await bot.send_message(user.telegram_id, f'''Привет! 👋\n\nРады видеть тебя на нашем мероприятии!\n\n🗓 13 декабря\n
+📍 Улица Московская 64\n
+⏰ С 16:00 до 05:00\n\n
+Билет можно приобристи в мини приложении
+Ждём тебя за яркими впечатлениями! ✨''')
     return db_user
 
 async def update_user(db: AsyncSession, telegram_id: str, user_update: schemas.UserUpdate):
@@ -113,8 +122,15 @@ async def create_ticket(db: AsyncSession, ticket: schemas.TicketCreate, user_id:
     
     db_ticket = models.Ticket(**ticket.dict(), user_id=user_id)
     db.add(db_ticket)
+    data = {1300:'vip', 900:'fast', 500:'standart'}
     await db.commit()
     await db.refresh(db_ticket)
+    await bot.send_message(user_id, f'''✅ Билет успешно приобретен!\n\nТип: {data[ticket.price]} 🎫\n
+Номер билета: {ticket.qr_code}\n\n
+
+⚠️ Важно: Репост анонса до 01.12.2025 — стоимость 500р . За реп после этой даты на входе потребуется доплата 100 рублей.
+\n\n
+До встречи 13 декабря! 🎉''')
     return db_ticket
 
 async def mark_ticket_used(db: AsyncSession, ticket_id: int):
@@ -246,6 +262,7 @@ async def update_order_fulfillment(db: AsyncSession, order_id: int, is_fulfilled
     order.is_fulfilled = is_fulfilled
     await db.commit()
     await db.refresh(order)
+    await bot.send_message(order.user_id, f'🎉 Ваш заказ готов\nСовсем скоро его доставят к столу №{order.table_id}')
     return order
 
 
