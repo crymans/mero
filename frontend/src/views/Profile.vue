@@ -504,6 +504,7 @@ const downloadQRCode = async () => {
 }
 
 const goToTickets = () => {
+  window.Telegram.WebApp.HapticFeedback.impactOccurred('soft')
   router.push('/rostov_party')
   setTimeout(() => {
     const ticketsSection = document.getElementById('tickets')
@@ -514,6 +515,7 @@ const goToTickets = () => {
 }
 
 const goToMenu = () => {
+  window.Telegram.WebApp.HapticFeedback.impactOccurred('soft')
   router.push('/rostov_party/menu')
 }
 

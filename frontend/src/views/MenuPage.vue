@@ -199,11 +199,13 @@ const placeOrder = async (tableNumber: number) => {
     
     // Успешное создание заказа
     alert(`🎉 Заказ успешно оформлен! Доставка к столу №${tableNumber} через 10-15 минут`)
+    window.Telegram.WebApp.HapticFeedback.notificationOccurred('success')
     cart.value = []
     showCartModal.value = false
     
   } catch (error: any) {
     console.error('Error placing order:', error)
+    window.Telegram.WebApp.HapticFeedback.notificationOccurred('error')
     
     // Проверяем специфические ошибки
     if (error.message.includes('Maximum active orders limit reached')) {

@@ -143,7 +143,7 @@
               </div>
               <button class="ticket-btn vip-btn" @click="buyTicket('vip')">
                 <span class="btn-text">КУПИТЬ БИЛЕТ</span>
-                <span class="btn-glow"></span>
+                <span class="btn-glow" id="howbuy"></span>
               </button>
             </div>
           </div>
@@ -154,7 +154,7 @@
       <div class="purchase-guide" >
         <div class="guide-card">
           <div class="guide-header">
-            <h3 class="guide-title" id="howbuy">🌟 КАК КУПИТЬ БИЛЕТ ЧЕРЕЗ STARS</h3>
+            <h3 class="guide-title" >🌟 КАК КУПИТЬ БИЛЕТ ЧЕРЕЗ STARS</h3>
             <div class="stars-badge">РЕКОМЕНДУЕМЫЙ СПОСОБ</div>
           </div>
           

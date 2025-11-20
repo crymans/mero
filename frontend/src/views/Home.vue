@@ -57,12 +57,14 @@ onMounted(async () => {
 })
 
 const scrollToTickets = () => {
+  window.Telegram.WebApp.HapticFeedback.impactOccurred('soft')
   const element = document.getElementById('tickets')
   if (element) {
     element.scrollIntoView({ behavior: 'smooth' })
   }
 }
 const scrollToTicketsVip = () => {
+  window.Telegram.WebApp.HapticFeedback.impactOccurred('soft')
   const element = document.getElementById('ticketsvip')
   if (element) {
     element.scrollIntoView({ behavior: 'smooth' })

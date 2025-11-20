@@ -20,7 +20,9 @@ import DesktopNavigation from '@/components/layout/DesktopNavigation.vue'
 
 try{window.Telegram.WebApp.disableVerticalSwipes()
 window.Telegram.WebApp.requestFullscreen()
-window.Telegram.WebApp.lockOrientation()}
+window.Telegram.WebApp.lockOrientation()
+window.Telegram.WebApp.backgroundColor('#000000')
+}
 catch{
 }
 
