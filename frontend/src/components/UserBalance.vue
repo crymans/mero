@@ -74,7 +74,7 @@ const isValidAmount = computed(() => {
 
 const purchasecallback = (param) =>{
   console.log(param)
-  router.push('/rostov_api')
+  location.reload()
 }
 
 // Методы
@@ -84,8 +84,9 @@ const handleTopUp = async () => {
   loading.value = true
   try {
     // Эмитируем событие с количеством звезд
-    let link = await userStore.createPurchase('122345', starsAmount.value)
-    window.Telegram.WebApp.openInvoice(link, purchasecallback)
+    await userStore.createPurchase('122345', starsAmount.value)
+    
+    window.Telegram.WebApp.openInvoice(userStore.purchase_link, purchasecallback)
     // Сброс поля ввода после успешного запроса
     starsAmount.value = 0
   } catch (error) {

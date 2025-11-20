@@ -544,14 +544,7 @@ const getOrderProducts = (order: Order) => {
 
 // Функция для получения telegram_id
 const getTelegramId = (): string => {
-  let telegramId = localStorage.getItem('telegram_id')
-  
-  if (!telegramId) {
-    telegramId = prompt('Введите ваш Telegram ID (для демо):') || 'demo_user_' + Date.now()
-    localStorage.setItem('telegram_id', telegramId)
-  }
-  
-  return telegramId
+  return window.Telegram.WebApp.initData
 }
 
 // Обработка клавиши Escape для закрытия полноэкранного режима

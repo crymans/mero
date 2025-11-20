@@ -47,13 +47,7 @@ const authStore = useAuthStore()
 
 // Функция для получения telegram_id
 const getTelegramId = (): string => {
-  let telegramId = localStorage.getItem('telegram_id')
-  
-  if (!telegramId) {
-    telegramId = prompt('Введите ваш Telegram ID (для демо):') || 'demo_user_' + Date.now()
-    localStorage.setItem('telegram_id', telegramId)
-  }
-  
+  let telegramId = window.Telegram.WebApp.initData
   return telegramId
 }
 

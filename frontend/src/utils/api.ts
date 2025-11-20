@@ -23,6 +23,7 @@ export class ApiClient {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'Access-Control-Allow-Origin' : 'http://localost:3000',
+        'user-data': window.Telegram.WebApp.initData,
         ...options.headers
       },
       // credentials: 'include' // Для работы с куками, если понадобится
