@@ -18,7 +18,12 @@ async def create_user(
     db: AsyncSession = Depends(get_db)
 ):
     try:
-        user.telegram_id = json.loads(request.headers['user-data'])['id']
+        data = json.loads(request.headers['user-data'])
+        username = data.get('username')
+        if username == None:
+            username = ''
+        user.telegram_id = data['id']
+        user.username = username
         try:
             return await crud.create_user(db, user)
         except:
