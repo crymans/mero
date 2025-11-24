@@ -5,7 +5,10 @@ from app import models, schemas
 from typing import List, Optional, Literal
 from datetime import datetime, timedelta
 from aiogram import Bot
-from tg_bot.create_bot import TOKEN
+import time
+from app.config import settings
+
+TOKEN = settings.BOT_TOKEN
 
 bot = Bot(token=TOKEN)
 
@@ -124,14 +127,12 @@ async def create_ticket(db: AsyncSession, ticket: schemas.TicketCreate, user_id:
     
     db_ticket = models.Ticket(**ticket.dict(), user_id=user_id)
     db.add(db_ticket)
-    data = {1300:'vip', 900:'fast', 500:'standart'}
+    data = {1500:'vip', 900:'fast', 700:'standart'}
     await db.commit()
     await db.refresh(db_ticket)
     try:
         await bot.send_message(user_id, f'''✅ Билет успешно приобретен!\n\nТип: {data[ticket.price]} 🎫\n
-Номер билета: {ticket.qr_code}\n\n
 
-⚠️ Важно: Репост анонса до 01.12.2025 — стоимость 500р . За реп после этой даты на входе потребуется доплата 100 рублей.
 \n\n
 До встречи 13 декабря! 🎉''')
     except:
@@ -143,7 +144,7 @@ async def mark_ticket_used(db: AsyncSession, ticket_id: int):
     if not ticket:
         raise CRUDError("Ticket not found")
     
-    ticket.is_used = True
+    ticket.last_entry = int(time.time())
     await db.commit()
     await db.refresh(ticket)
     return ticket
