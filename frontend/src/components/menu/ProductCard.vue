@@ -81,7 +81,6 @@ const getCategoryEmoji = (category: string) => {
 }
 
 const handleAddToCart = () => {
-  window.Telegram.WebApp.HapticFeedback.impactOccurred('soft')
   if (!props.user || !(props.product.count > 0)) return
   
   emit('addToCart', props.product)

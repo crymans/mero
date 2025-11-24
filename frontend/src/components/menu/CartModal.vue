@@ -152,7 +152,6 @@ const validateTableNumber = () => {
 }
 
 const handlePlaceOrder = () => {
-  window.Telegram.WebApp.HapticFeedback.impactOccurred('soft')
   if (!isTableValid.value) {
     tableError.value = 'Пожалуйста, укажите номер стола'
     return

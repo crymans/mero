@@ -30,13 +30,14 @@
           <div class="qr-section">
             <h3>🎫 ВАШ БИЛЕТ</h3>
             <div class="qr-container">
-              <div v-if="userStore.ticket && userStore.qrCodeUrl" class="qr-code" >
+              <div v-if="userStore.ticket && userStore.qrCodeUrl" class="qr-code">
                 <img 
                   :src="userStore.qrCodeUrl" 
                   :alt="`QR Code: ${userStore.ticket.qr_code}`"
                   class="qr-image"
                   @load="handleImageLoad"
                   @error="handleImageError"
+                  
                 />
                 <div class="qr-overlay">
                   <span class="zoom-icon">🔍</span>
@@ -69,16 +70,16 @@
             
             <!-- Информация о билете -->
             <div v-if="userStore.ticket" class="ticket-info">
-              <div class="ticket-info-item">
+              <!-- <div class="ticket-info-item">
                 <span class="info-label">Код билета:</span>
                 <span class="info-value ticket-code">{{ userStore.ticket.qr_code }}</span>
-              </div>
-              <div class="ticket-info-item">
+              </div> -->
+              <!-- <div class="ticket-info-item">
                 <span class="info-label">Статус:</span>
                 <span class="info-value" :class="userStore.ticket.is_used ? 'used' : 'active'">
-                  {{ userStore.ticket.is_used ? 'Использован' : 'Активен' }}
+                  {{ userStore.ticket.last_entry ? 'Использован' : 'Активен' }}
                 </span>
-              </div>
+              </div> -->
               <div class="ticket-info-item">
                 <span class="info-label">Тип:</span>
                 <span class="info-value">{{ ticketType }}</span>
@@ -249,12 +250,12 @@
                 <span class="detail-label">Тип:</span>
                 <span class="detail-value">{{ ticketType }}</span>
               </div>
-              <div class="ticket-detail-item">
+              <!-- <div class="ticket-detail-item">
                 <span class="detail-label">Статус:</span>
-                <span class="detail-value" :class="userStore.ticket.is_used ? 'used' : 'active'">
-                  {{ userStore.ticket.is_used ? 'Использован' : 'Активен' }}
+                <span class="detail-value" :class="userStore.ticket.last_entry ? 'used' : 'active'">
+                  {{ userStore.ticket.last_entry ? 'Использован' : 'Активен' }}
                 </span>
-              </div>
+              </div> -->
             </div>
             
             <h3>Как использовать:</h3>
@@ -312,6 +313,7 @@ const originalContactForm = ref({ ...contactForm.value })
 
 // Получаем пользователя из хранилища
 const user = computed(() => userStore.user)
+
 
 // Вычисляемые свойства для статуса
 const userStatus = computed(() => {

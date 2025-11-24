@@ -43,7 +43,7 @@ interface Ticket {
   id: number
   user_id: number
   qr_code: string
-  is_used: boolean
+  last_entry: number
   price: number
   created_at: string
   user?: User

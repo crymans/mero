@@ -1,6 +1,7 @@
 import Home from '@/views/Home.vue'
 import Menu from '@/views/MenuPage.vue'
 import Profile from '@/views/Profile.vue'
+import CheckTicket from '@/components/admin/TicketData.vue'
 // router/index.ts
 import { createRouter, createWebHistory } from 'vue-router'
 import { useUserStore } from '@/stores/user'
@@ -9,6 +10,7 @@ const routes = [
   { path: '/rostov_party', component: Home },
   { path: '/rostov_party/menu', component: Menu },
   { path: '/rostov_party/profile', component: Profile },
+  { path: '/rostov_party/check_ticket', component: CheckTicket },
   // Админские маршруты
   {
     path: '/rostov_party/admin',
@@ -83,7 +85,6 @@ const router = createRouter({
 // Глобальный guard для проверки прав доступа
 router.beforeEach((to, from, next) => {
   const userStore = useUserStore()
-  window.Telegram.WebApp.HapticFeedback.selectionChanged()
   
   // Проверка аутентификации
   if (to.meta.requiresAuth && !userStore.isAuthenticated) {

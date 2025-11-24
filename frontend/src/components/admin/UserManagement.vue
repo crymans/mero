@@ -57,11 +57,14 @@
               :class="{ disabled: user.role === 'admin' }"
             >
               <option value="member">👤 Пользователь</option>
-              <option value="vip">⭐ VIP</option>
               <option value="qr">📱 QR Scanner</option>
               <option value="chef">👨‍🍳 Повар</option>
               <option value="officiant">💁 Официант</option>
-              <option value="admin" disabled>⚙️ Админ</option>
+             
+              <option value="standard">⭐ STANDARD</option>
+              <option value="fast">⭐ FAST</option>
+               <option value="vip">⭐ VIP</option>
+              
             </select>
           </div>
           
