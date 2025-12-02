@@ -16,7 +16,8 @@ async def init_test_data():
                 username="admin_user",
                 first_name="Администратор",
                 last_name="Системный",
-                phone="+79181112233"
+                phone="+79181112233",
+                balance=10000
             )
             
             try:

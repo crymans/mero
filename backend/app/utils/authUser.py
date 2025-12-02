@@ -6,7 +6,6 @@ import logging
 import jwt, time
 
 logger = logging.getLogger('fastapi')
-TOKEN = ''
 
 
 class AuthUser:
@@ -36,7 +35,7 @@ class AuthUser:
             data_check_arr.remove(hash_item)
             data_check_arr.sort()
             data_check_string = "\n".join(data_check_arr)
-            secret_key = hmac.new("WebAppData".encode(), TOKEN.encode(),  hashlib.sha256).digest()
+            secret_key = hmac.new("WebAppData".encode(), settings.BOT_TOKEN.encode(),  hashlib.sha256).digest()
             calculated_hash = hmac.new(secret_key, data_check_string.encode(), hashlib.sha256).hexdigest()
             return calculated_hash == telegram_hash
         except Exception as e:
@@ -46,15 +45,17 @@ class AuthUser:
     async def parse_user_data(cls, user:str, ip:str=''):
         try:
             user_unquote = unquote(user, encoding='utf-8')
-            if not await cls.__check_hash(user_unquote):
+            au = await cls.__check_hash(user_unquote)
+            print(au)
+            if not au:
                 raise Exception()
             # logger.info(user)
             params_before = parse_qs(user_unquote)
             params = unquote(params_before['user'][0])
             user_dict = json.loads(params)
-            is_bot =  await cls.is_bot(user_dict)
-            if is_bot:
-                raise Exception()
+            # is_bot =  await cls.is_bot(user_dict)
+            # if is_bot:
+            #     raise Exception()
 
             return user_dict
         except Exception as e:
