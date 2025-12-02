@@ -20,7 +20,7 @@
         </div>
         <div class="image-overlay"></div>
         <div class="price-tag">
-          {{ product.price }} ₽
+          {{ product.price }} stars
         </div>
       </div>
       

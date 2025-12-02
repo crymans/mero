@@ -81,7 +81,7 @@
               </div>
               <div class="ticket-info-item">
                 <span class="info-label">Стоимость:</span>
-                <span class="info-value">{{ userStore.ticket.price }} ₽</span>
+                <span class="info-value">{{ userStore.ticket.price }} stars</span>
               </div>
               <div class="ticket-info-item">
                 <span class="info-label">Приобретен:</span>
@@ -210,7 +210,7 @@
                     </div>
                   </div>
                   <div class="order-meta">
-                    <span class="order-total">{{ order.total_price }} ₽</span>
+                    <span class="order-total">{{ order.total_price }} stars</span>
                     <span class="order-date">{{ formatDate(order.created_at) }}</span>
                   </div>
                 </div>

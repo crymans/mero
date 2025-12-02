@@ -10,7 +10,7 @@ class UserBase(BaseModel):
     first_name: Optional[str] = None
     last_name: Optional[str] = None
     phone: Optional[str] = None
-    balance: int = Field(default=10000)
+    balance: int = Field(default=0)
 
 class UserCreate(UserBase):
     pass

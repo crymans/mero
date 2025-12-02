@@ -8,7 +8,7 @@
       </div>
       
       <div class="cart-info">
-        <div class="total-price">{{ formattedTotal }} ₽</div>
+        <div class="total-price">{{ formattedTotal }} stars</div>
         <div class="item-count">{{ props.itemCount }} {{ itemText }}</div>
       </div>
       

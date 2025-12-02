@@ -25,8 +25,8 @@
                   <div class="title-underline"></div>
                 </div>
                 <div class="price">
-                  <span class="old-price">900 ₽</span>
-                  <span class="current-price">500 ₽</span>
+                  <span class="old-price">600</span>
+                  <span class="current-price">400 stars</span>
                 </div>
                 <div class="ticket-tag">со скидкой</div>
               </div>
@@ -50,8 +50,8 @@
               </div>
               <div class="ticket-conditions">
                 <p>✓ Сделай репост мероприятия </p>
-                <p>✓ до 01.12.2025 - 500p </p>
-                <p>✓ до 12.12.2025 - 600p </p>
+                <!-- <p>✓ до 01.12.2025 - 500p </p>
+                <p>✓ до 12.12.2025 - 600p </p> -->
                 <p>✓ Покажи на входе</p>
               </div>
               <button class="ticket-btn basic-btn" @click="buyTicket('standard')">
@@ -71,7 +71,7 @@
                   <div class="title-underline"></div>
                 </div>
                 <div class="price">
-                  <span class="current-price">900 ₽</span>
+                  <span class="current-price">450 stars</span>
                 </div>
                 <div class="ticket-tag popular">популярный</div>
               </div>
@@ -114,7 +114,7 @@
                   <div class="title-underline"></div>
                 </div>
                 <div class="price">
-                  <span class="current-price">1300 ₽</span>
+                  <span class="current-price">650 stars</span>
                 </div>
                 <div class="ticket-tag">премиум</div>
               </div>
@@ -239,7 +239,7 @@
             <div class="service-content">
               <div class="service-header">
                 <h4>КАЛЬЯН</h4>
-                <div class="service-price">1600 ₽</div>
+                <div class="service-price">1600 stars</div>
               </div>
               <p class="service-desc">На компанию до 4 человек • 1 час</p>
               <div class="service-features">
@@ -266,7 +266,7 @@
             <div class="service-content">
               <div class="service-header">
                 <h4>КОМНАТА ОТДЫХА</h4>
-                <div class="service-price">2000 ₽</div>
+                <div class="service-price">2000 stars</div>
               </div>
               <p class="service-desc">2-спальная кровать • 1 час</p>
               <div class="service-features">

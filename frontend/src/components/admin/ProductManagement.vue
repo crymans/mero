@@ -32,7 +32,7 @@
           </p>
           <div class="product-meta">
             <span class="product-category">{{ product.category }}</span>
-            <span class="product-price">₽{{ product.price }}</span>
+            <span class="product-price">stars{{ product.price }}</span>
           </div>
           <div class="product-stock">
             В наличии: 

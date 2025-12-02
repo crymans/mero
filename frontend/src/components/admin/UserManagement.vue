@@ -40,7 +40,7 @@
           <p class="user-telegram-id">Telegram ID: {{ user.telegram_id }}</p>
           <p class="user-phone" v-if="user.phone">📱 {{ user.phone }}</p>
           <p class="user-balance" v-if="user.balance !== undefined">
-            Баланс: {{ user.balance }} ₽
+            Баланс: {{ user.balance }} stars
           </p>
           <p class="user-joined">
             Зарегистрирован: {{ formatDate(user.created_at) }}

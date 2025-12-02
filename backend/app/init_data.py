@@ -86,7 +86,7 @@ async def init_test_data():
     {
         "name": "27 шотов из ликера",
         "description": "9 малина, 9 апельсин, 9 мандарин",
-        "price": 500.0,
+        "price": 5000.0,
         "category": "drink",
         "count": 100,
         "is_for_table": False,

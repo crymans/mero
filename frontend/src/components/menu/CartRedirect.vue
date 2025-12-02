@@ -7,7 +7,7 @@
       </div>
       <div class="redirect-text">
         <div class="redirect-title">Корзина</div>
-        <div class="redirect-subtitle">{{ formattedTotal }} ₽</div>
+        <div class="redirect-subtitle">{{ formattedTotal }} stars</div>
       </div>
       <div class="redirect-arrow">
         <span class="arrow">›</span>

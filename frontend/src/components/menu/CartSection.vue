@@ -19,7 +19,7 @@
         
         <div class="item-details">
           <span class="item-name">{{ item.product.name }}</span>
-          <span class="item-price">{{ item.product.price }} ₽/шт</span>
+          <span class="item-price">{{ item.product.price }} stars/шт</span>
         </div>
         
         <div class="item-controls">
@@ -33,7 +33,7 @@
         </div>
         
         <div class="item-total">
-          {{ item.product.price * item.quantity }} ₽
+          {{ item.product.price * item.quantity }} stars
         </div>
       </div>
     </div>
@@ -41,7 +41,7 @@
     <div class="cart-footer">
       <div class="total-section">
         <div class="total-label">Общая сумма:</div>
-        <div class="total-amount">{{ cartTotal }} ₽</div>
+        <div class="total-amount">{{ cartTotal }} stars</div>
       </div>
       
       <button class="order-btn" @click="$emit('placeOrder')">

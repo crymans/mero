@@ -59,8 +59,8 @@
                 
                 <!-- Общая стоимость товара внутри плашки -->
                 <div class="item-price-section">
-                  <div class="price-per-item">{{ item.product.price }} ₽ × {{ item.quantity }}</div>
-                  <div class="item-total-mini">{{ (item.product.price * item.quantity).toLocaleString('ru-RU') }} ₽</div>
+                  <div class="price-per-item">{{ item.product.price }} stars × {{ item.quantity }}</div>
+                  <div class="item-total-mini">{{ (item.product.price * item.quantity).toLocaleString('ru-RU') }} stars</div>
                 </div>
               </div>
               
@@ -87,7 +87,7 @@
           </div>
           <div class="total-line main">
             <span class="total-label">Общая сумма:</span>
-            <span class="total-amount">{{ props.cartTotal.toLocaleString('ru-RU') }} ₽</span>
+            <span class="total-amount">{{ props.cartTotal.toLocaleString('ru-RU') }} stars</span>
           </div>
         </div>
         

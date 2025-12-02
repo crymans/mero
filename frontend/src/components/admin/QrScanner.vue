@@ -74,7 +74,7 @@
             </div>
             <div class="detail-row">
               <span class="label">Цена:</span>
-              <span class="value">₽{{ scannedTicket.price }}</span>
+              <span class="value">stars{{ scannedTicket.price }}</span>
             </div>
             <div class="detail-row">
               <span class="label">Владелец:</span>
