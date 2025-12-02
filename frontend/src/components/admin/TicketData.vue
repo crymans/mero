@@ -49,7 +49,7 @@
             </div>
             <div class="info-card">
               <span class="info-label">Цена</span>
-              <span class="info-value">{{ entryData.ticket.price }} ₽</span>
+              <span class="info-value">{{ entryData.ticket.price }} stars</span>
             </div>
             <div class="info-card highlight">
               <span class="info-label">Последний вход</span>
@@ -90,7 +90,7 @@
             </div>
             <div class="info-card">
               <span class="info-label">Баланс</span>
-              <span class="info-value">{{ entryData.user.balance }} ₽</span>
+              <span class="info-value">{{ entryData.user.balance }} stars</span>
             </div>
           </div>
         </div>

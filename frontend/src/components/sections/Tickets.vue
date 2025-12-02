@@ -25,13 +25,8 @@
                   <div class="title-underline"></div>
                 </div>
                 <div class="price">
-<<<<<<< HEAD
-                  <span class="old-price">600</span>
+                  <span class="old-price">800 stars</span>
                   <span class="current-price">400 stars</span>
-=======
-                  <span class="old-price">900 ₽</span>
-                  <span class="current-price">700 ₽</span>
->>>>>>> 7e9ba3fe22c549f8ccc0e6223dbc5677b26f11aa
                 </div>
                 <div class="ticket-tag">со скидкой</div>
               </div>
@@ -55,11 +50,6 @@
               </div>
               <div class="ticket-conditions">
                 <p>✓ Сделай репост мероприятия </p>
-<<<<<<< HEAD
-                <!-- <p>✓ до 01.12.2025 - 500p </p>
-                <p>✓ до 12.12.2025 - 600p </p> -->
-=======
->>>>>>> 7e9ba3fe22c549f8ccc0e6223dbc5677b26f11aa
                 <p>✓ Покажи на входе</p>
               </div>
               <button class="ticket-btn basic-btn" @click="buyTicket('standard')">
@@ -122,11 +112,7 @@
                   <div class="title-underline"></div>
                 </div>
                 <div class="price">
-<<<<<<< HEAD
                   <span class="current-price">650 stars</span>
-=======
-                  <span class="current-price">1500 ₽</span>
->>>>>>> 7e9ba3fe22c549f8ccc0e6223dbc5677b26f11aa
                 </div>
                 <div class="ticket-tag">премиум</div>
               </div>
@@ -154,99 +140,14 @@
                 <p>✓ Лучший сервис</p>
               </div>
               <button class="ticket-btn vip-btn" @click="buyTicket('vip')">
-<<<<<<< HEAD
-                <span class="btn-text">КУПИТЬ БИЛЕТ</span>
-                <span class="btn-glow" id="howbuy"></span>
-=======
                 <span class="btn-text">VIP ДОСТУП</span>
                 <span class="btn-glow"></span>
->>>>>>> 7e9ba3fe22c549f8ccc0e6223dbc5677b26f11aa
               </button>
             </div>
           </div>
         </div>
       </div>
 
-<<<<<<< HEAD
-            <!-- Гайд по покупке -->
-      <div class="purchase-guide" >
-        <div class="guide-card">
-          <div class="guide-header">
-            <h3 class="guide-title" >🌟 КАК КУПИТЬ БИЛЕТ ЧЕРЕЗ STARS</h3>
-            <div class="stars-badge">РЕКОМЕНДУЕМЫЙ СПОСОБ</div>
-          </div>
-          
-          <div class="guide-steps">
-            <div class="guide-step">
-              <div class="step-number">1</div>
-              <div class="step-content">
-                <h4>Перейди в профиль</h4>
-                <p>Открой приложение и перейди в раздел профиля</p>
-              </div>
-            </div>
-            
-            <div class="guide-step">
-              <div class="step-number">2</div>
-              <div class="step-content">
-                <h4>Пополни баланс</h4>
-                <p>Нажми "Пополнить баланс" и укажи нужную сумму</p>
-              </div>
-            </div>
-            
-            <div class="guide-step">
-              <div class="step-number">3</div>
-              <div class="step-content">
-                <h4>Переведи Stars</h4>
-                <p>Подтверди транзакцию Stars на свой аккаунт в ЗАГРУЗКЕ</p>
-              </div>
-            </div>
-            
-            <div class="guide-step">
-              <div class="step-number">4</div>
-              <div class="step-content">
-                <h4>Получи билет</h4>
-                <p>После подтверждения оплаты вернись на главную страницу, жми купить билет!</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="guide-benefits">
-            <div class="benefit-item">
-              <span class="benefit-icon">🍹</span>
-              <span>Stars можно использовать для оплаты в баре</span>
-            </div>
-            <div class="benefit-item">
-              <span class="benefit-icon">💨</span>
-              <span>Оплачивай дополнительные услуги Stars</span>
-            </div>
-            <div class="benefit-item">
-              <span class="benefit-icon">⚡</span>
-              <span>Мгновенное подтверждение оплаты</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="alternative-payment">
-          <h4>Альтернативные способы оплаты</h4>
-          <div class="payment-methods">
-            <div class="payment-method">
-              <span class="payment-icon">💳</span>
-              <span>Перевод на карту</span>
-            </div>
-            <div class="payment-method">
-              <span class="payment-icon">💵</span>
-              <span>Наличные при входе</span>
-            </div>
-          </div>
-          <p class="payment-note">
-            ⚠️ <strong>Важно:</strong> При оплате наличными возможны очереди. 
-            Рекомендуем заранее оплатить через Stars для быстрого входа!
-          </p>
-        </div>
-      </div>
-
-=======
->>>>>>> 7e9ba3fe22c549f8ccc0e6223dbc5677b26f11aa
       <!-- Дополнительные услуги -->
       <div class="services">
         <h3 class="subsection-title">ДОПОЛНИТЕЛЬНО НА МЕСТЕ</h3>
@@ -259,7 +160,7 @@
             <div class="service-content">
               <div class="service-header">
                 <h4>КАЛЬЯН</h4>
-                <div class="service-price">1600 stars</div>
+                <div class="service-price">1600 ₽</div>
               </div>
               <p class="service-desc">На компанию до 4 человек • 1 час</p>
               <div class="service-features">
@@ -286,7 +187,7 @@
             <div class="service-content">
               <div class="service-header">
                 <h4>КОМНАТА ОТДЫХА</h4>
-                <div class="service-price">2000 stars</div>
+                <div class="service-price">2000 ₽ </div>
               </div>
               <p class="service-desc">2-спальная кровать • 1 час</p>
               <div class="service-features">

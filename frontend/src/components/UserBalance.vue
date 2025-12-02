@@ -74,18 +74,11 @@ const isValidAmount = computed(() => {
 
 const purchasecallback = (param) =>{
   console.log(param)
-  if(param == 'paid'){
-    window.Telegram.WebApp.HapticFeedback.notificationOccurred('success')
-  }
-  else{
-    window.Telegram.WebApp.HapticFeedback.notificationOccurred('error')
-  }
   location.reload()
 }
 
 // Методы
 const handleTopUp = async () => {
-  window.Telegram.WebApp.HapticFeedback.impactOccurred('soft')
   if (!isValidAmount.value) return
   
   loading.value = true

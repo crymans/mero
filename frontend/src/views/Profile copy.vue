@@ -331,15 +331,15 @@ const user = computed(() => userStore.user)
 // Вычисляемые свойства для статуса
 const userStatus = computed(() => {
   if (!userStore.ticket) return 'none'
-  if (userStore.ticket.price >= 1300) return 'vip'
-  if (userStore.ticket.price >= 900) return 'standard'
+  if (userStore.ticket.price >= 650) return 'vip'
+  if (userStore.ticket.price >= 450) return 'standard'
   return 'basic'
 })
 
 const ticketType = computed(() => {
   if (!userStore.ticket) return 'Нет билета'
-  if (userStore.ticket.price >= 1300) return 'VIP'
-  if (userStore.ticket.price >= 900) return 'Стандарт'
+  if (userStore.ticket.price >= 650) return 'VIP'
+  if (userStore.ticket.price >= 450) return 'Стандарт'
   return 'Базовый'
 })
 
