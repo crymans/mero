@@ -16,11 +16,7 @@ async def create_ticket(
     db: AsyncSession = Depends(get_db)
 ):
     try:
-<<<<<<< HEAD
         if int(ticket.price) not in [400, 450, 650]:
-=======
-        if int(ticket.price) not in [700, 900, 1500]:
->>>>>>> 7e9ba3fe22c549f8ccc0e6223dbc5677b26f11aa
             raise Exception()
         existing_ticket = await crud.get_user_ticket(db, current_user.telegram_id)
         if existing_ticket:

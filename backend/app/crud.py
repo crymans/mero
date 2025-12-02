@@ -47,7 +47,7 @@ async def create_user(db: AsyncSession, user: schemas.UserCreate):
         await bot.send_message(user.telegram_id, f'''Привет! 👋\n\nРады видеть тебя на нашем мероприятии!\n\n🗓 13 декабря\n
 📍 Улица Московская 64\n
 ⏰ С 16:00 до 05:00\n\n
-Билет можно преобрести в мини приложении\n
+Билет можно приобристи в мини приложении\n
 Приходи за яркими впечатлениями! ✨''')
     except:
         pass
@@ -127,22 +127,12 @@ async def create_ticket(db: AsyncSession, ticket: schemas.TicketCreate, user_id:
     
     db_ticket = models.Ticket(**ticket.dict(), user_id=user_id)
     db.add(db_ticket)
-<<<<<<< HEAD
     data = {650:'vip', 450:'fast', 400:'standart'}
-    await db.commit()
-    await db.refresh(db_ticket)
-    try:
-        await bot.send_message(user_id, f'''✅ Билет успешно приобретен!\nТип: {data[ticket.price]} 🎫\n
-Номер билета: {ticket.qr_code}\n
-=======
-    data = {1500:'vip', 900:'fast', 700:'standart'}
     await db.commit()
     await db.refresh(db_ticket)
     try:
         await bot.send_message(user_id, f'''✅ Билет успешно приобретен!\n\nТип: {data[ticket.price]} 🎫\n
 
-\n\n
->>>>>>> 7e9ba3fe22c549f8ccc0e6223dbc5677b26f11aa
 До встречи 13 декабря! 🎉''')
     except:
         pass

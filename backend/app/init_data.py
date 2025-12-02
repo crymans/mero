@@ -46,11 +46,7 @@ async def init_test_data():
     {
         "name": "Хот-Дог",
         "description": "Сочный хот-дог с мясной сосиской",
-<<<<<<< HEAD
-        "price": 250.0,
-=======
         "price": 300.0,
->>>>>>> 7e9ba3fe22c549f8ccc0e6223dbc5677b26f11aa
         "category": "food",
         "count": 50,
         "is_for_table": False,

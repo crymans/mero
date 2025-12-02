@@ -28,21 +28,5 @@ async def successful_payment(msg: Message):
             is_error = 1
             print(f'User:{msg.from_user.id} Purchase SUCCESSFULL stars:{price} added')    
     
-<<<<<<< HEAD
-    except Exception as e:
-        logger.critical(f'User:{msg.from_user.id} Purchase stars:{price} error: {e}')
-
-@user_router.message(CommandStart())
-async def start(msg: Message):
-    try:
-        await msg.answer(f'''Привет! 👋\n\nРады видеть тебя на нашем мероприятии!\n\n🗓 13 декабря\n
-📍 Улица Московская 64\n
-⏰ С 16:00 до 05:00\n\n
-Билет можно преобрести в мини приложении\n
-Приходи за яркими впечатлениями! ✨''')
-    except:
-        pass
-=======
     # except Exception as e:
     #     logger.critical(f'User:{msg.from_user.id} Purchase stars:{price} error: {e}')
->>>>>>> 7e9ba3fe22c549f8ccc0e6223dbc5677b26f11aa

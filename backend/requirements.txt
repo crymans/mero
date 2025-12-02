@@ -9,3 +9,5 @@ aiosqlite
 requests
 aiohttp
 aiogram
+pydantic_settings
+pyjwt
