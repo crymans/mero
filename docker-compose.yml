@@ -11,7 +11,7 @@ services:
 
   bot:
     build: backend/. # Используем тот же образ, что и для web
-    command: python3 -m tg_bot.main.py  # Команда для запуска бота
+    command: python3 -m tg_bot.main  # Команда для запуска бота
     volumes:
       - db_data:/app  # Общий доступ к БД
     environment:
