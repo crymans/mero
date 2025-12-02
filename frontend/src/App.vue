@@ -18,6 +18,7 @@ import { ref, onMounted, onBeforeUnmount } from 'vue'
 import BottomNavigation from '@/components/BottomNavigation.vue'
 import DesktopNavigation from '@/components/layout/DesktopNavigation.vue'
 
+<<<<<<< HEAD
 try{window.Telegram.WebApp.disableVerticalSwipes()
 window.Telegram.WebApp.requestFullscreen()
 window.Telegram.WebApp.lockOrientation()
@@ -26,6 +27,8 @@ window.Telegram.WebApp.backgroundColor('#000000')
 catch{
 }
 
+=======
+>>>>>>> 7e9ba3fe22c549f8ccc0e6223dbc5677b26f11aa
 // Определяем мобильное устройство
 const isMobile = ref(false)
 

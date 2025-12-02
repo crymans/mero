@@ -42,7 +42,7 @@ class TicketCreate(TicketBase):
 class Ticket(TicketBase):
     id: int
     user_id: int
-    is_used: bool
+    last_entry: int
     created_at: datetime
 
     class Config:
@@ -109,6 +109,10 @@ class ProductUpdate(BaseModel):
     count: Optional[int] = None
     is_for_table: Optional[bool] = None
     image_url: Optional[str] = None
+
+class EntryAnswer(BaseModel):
+    ticket: Ticket
+    user: User
 
 
 class LabeledPrice():

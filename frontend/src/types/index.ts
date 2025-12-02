@@ -45,7 +45,7 @@ export interface Ticket {
   user_id: number
   qr_code: string
   price: number
-  is_used: boolean
+  last_entry: number
   created_at: string
 }
 

@@ -16,20 +16,19 @@ async def checkout_process(pre_checkout_query: PreCheckoutQuery):
 
 @user_router.message(F.content_type == ContentType.SUCCESSFUL_PAYMENT)
 async def successful_payment(msg: Message):
-    try:
-        amount = msg.successful_payment.invoice_payload.lower()
-        price = int(msg.successful_payment.total_amount)
-        transaction = msg.successful_payment.telegram_payment_charge_id
-        is_error = 0
+    # try:
+    amount = msg.successful_payment.invoice_payload.lower()
+    price = int(msg.successful_payment.total_amount)
+    transaction = msg.successful_payment.telegram_payment_charge_id
+    is_error = 0
 
-        stars_to_add = price
-        async with AsyncSessionLocal() as db:
-            if not await operations_with_user_stars(db, msg.from_user.id, stars_to_add, '+'):
-                is_error = 1
-                print(f'User:{msg.from_user.id} Purchase ERRROR stars:{price} added')    
-            else:
-                await msg.answer(f'''Ваш баланс успешно пополнен на {stars_to_add} stars!\n\n''')
+    stars_to_add = price
+    async with AsyncSessionLocal() as db:
+        if not await operations_with_user_stars(db, msg.from_user.id, stars_to_add, '+'):
+            is_error = 1
+            print(f'User:{msg.from_user.id} Purchase SUCCESSFULL stars:{price} added')    
     
+<<<<<<< HEAD
     except Exception as e:
         logger.critical(f'User:{msg.from_user.id} Purchase stars:{price} error: {e}')
 
@@ -43,3 +42,7 @@ async def start(msg: Message):
 Приходи за яркими впечатлениями! ✨''')
     except:
         pass
+=======
+    # except Exception as e:
+    #     logger.critical(f'User:{msg.from_user.id} Purchase stars:{price} error: {e}')
+>>>>>>> 7e9ba3fe22c549f8ccc0e6223dbc5677b26f11aa

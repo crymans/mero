@@ -102,7 +102,6 @@ const categories = ['all', 'drink', 'food']
 const user = computed(() => userStore.user)
 
 const filteredProducts = computed(() => {
-  window.Telegram.WebApp.HapticFeedback.impactOccurred('soft')
   if (activeCategory.value === 'all') {
     return products.value
   }

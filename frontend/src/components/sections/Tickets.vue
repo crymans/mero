@@ -25,8 +25,13 @@
                   <div class="title-underline"></div>
                 </div>
                 <div class="price">
+<<<<<<< HEAD
                   <span class="old-price">600</span>
                   <span class="current-price">400 stars</span>
+=======
+                  <span class="old-price">900 ₽</span>
+                  <span class="current-price">700 ₽</span>
+>>>>>>> 7e9ba3fe22c549f8ccc0e6223dbc5677b26f11aa
                 </div>
                 <div class="ticket-tag">со скидкой</div>
               </div>
@@ -50,12 +55,15 @@
               </div>
               <div class="ticket-conditions">
                 <p>✓ Сделай репост мероприятия </p>
+<<<<<<< HEAD
                 <!-- <p>✓ до 01.12.2025 - 500p </p>
                 <p>✓ до 12.12.2025 - 600p </p> -->
+=======
+>>>>>>> 7e9ba3fe22c549f8ccc0e6223dbc5677b26f11aa
                 <p>✓ Покажи на входе</p>
               </div>
               <button class="ticket-btn basic-btn" @click="buyTicket('standard')">
-                <span class="btn-text">КУПИТЬ БИЛЕТ</span>
+                <span class="btn-text">ВЗЯТЬ ПО СКИДКЕ</span>
                 <span class="btn-glow"></span>
               </button>
             </div>
@@ -98,7 +106,7 @@
                 <p>✓ Приоритетный вход</p>
               </div>
               <button class="ticket-btn standard-btn" @click="buyTicket('fast')">
-                <span class="btn-text">КУПИТЬ БИЛЕТ</span>
+                <span class="btn-text">БЫСТРЫЙ ВХОД</span>
                 <span class="btn-glow"></span>
               </button>
             </div>
@@ -114,7 +122,11 @@
                   <div class="title-underline"></div>
                 </div>
                 <div class="price">
+<<<<<<< HEAD
                   <span class="current-price">650 stars</span>
+=======
+                  <span class="current-price">1500 ₽</span>
+>>>>>>> 7e9ba3fe22c549f8ccc0e6223dbc5677b26f11aa
                 </div>
                 <div class="ticket-tag">премиум</div>
               </div>
@@ -142,14 +154,20 @@
                 <p>✓ Лучший сервис</p>
               </div>
               <button class="ticket-btn vip-btn" @click="buyTicket('vip')">
+<<<<<<< HEAD
                 <span class="btn-text">КУПИТЬ БИЛЕТ</span>
                 <span class="btn-glow" id="howbuy"></span>
+=======
+                <span class="btn-text">VIP ДОСТУП</span>
+                <span class="btn-glow"></span>
+>>>>>>> 7e9ba3fe22c549f8ccc0e6223dbc5677b26f11aa
               </button>
             </div>
           </div>
         </div>
       </div>
 
+<<<<<<< HEAD
             <!-- Гайд по покупке -->
       <div class="purchase-guide" >
         <div class="guide-card">
@@ -227,6 +245,8 @@
         </div>
       </div>
 
+=======
+>>>>>>> 7e9ba3fe22c549f8ccc0e6223dbc5677b26f11aa
       <!-- Дополнительные услуги -->
       <div class="services">
         <h3 class="subsection-title">ДОПОЛНИТЕЛЬНО НА МЕСТЕ</h3>
@@ -287,16 +307,6 @@
             </div>
           </div>
         </div>
-
-        <div class="payment-note-bottom">
-          <div class="payment-reminder">
-            <span class="reminder-icon">💫</span>
-            <div class="reminder-content">
-              <strong>Все услуги можно оплатить Stars!</strong>
-              <p>Просто скажи официанту, что хочешь оплатить Stars, и он подскажет как это сделать</p>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -321,277 +331,6 @@ const activateService = (index: number) => {
 </script>
 
 <style scoped>
-/* Существующие стили остаются без изменений до этого момента */
-
-/* Стили для гайда по покупке */
-.purchase-guide {
-  margin-bottom: 3rem;
-}
-
-.guide-card {
-  background: linear-gradient(135deg, 
-    rgba(0, 255, 255, 0.1) 0%, 
-    rgba(255, 0, 255, 0.05) 100%);
-  border-radius: 20px;
-  padding: 2rem;
-  margin-bottom: 1.5rem;
-  border: 1px solid rgba(0, 255, 255, 0.2);
-  position: relative;
-  overflow: hidden;
-}
-
-.guide-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, #00ffff, #ff00ff, #ffff00);
-  animation: guideGlow 3s ease-in-out infinite;
-}
-
-@keyframes guideGlow {
-  0%, 100% { opacity: 0.7; }
-  50% { opacity: 1; }
-}
-
-.guide-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.guide-title {
-  font-size: 1.3rem;
-  background: linear-gradient(45deg, #00ffff, #ffff00);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin: 0;
-}
-
-.stars-badge {
-  background: linear-gradient(45deg, #ffd700, #ffed4e);
-  color: #000;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-}
-
-.guide-steps {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-}
-
-.guide-step {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  padding: 1rem;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  transition: all 0.3s ease;
-}
-
-.guide-step:hover {
-  transform: translateY(-2px);
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.step-number {
-  background: linear-gradient(45deg, #00ffff, #ff00ff);
-  color: #000;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  flex-shrink: 0;
-  font-size: 0.9rem;
-}
-
-.step-content h4 {
-  margin: 0 0 0.3rem 0;
-  color: #fff;
-  font-size: 1rem;
-}
-
-.step-content p {
-  margin: 0;
-  color: #ccc;
-  font-size: 0.85rem;
-  line-height: 1.4;
-}
-
-.guide-benefits {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.benefit-item {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  padding: 0.8rem;
-  background: rgba(0, 255, 255, 0.1);
-  border-radius: 10px;
-  border: 1px solid rgba(0, 255, 255, 0.2);
-}
-
-.benefit-icon {
-  font-size: 1.2rem;
-  flex-shrink: 0;
-}
-
-.benefit-item span:last-child {
-  font-size: 0.85rem;
-  color: #e0e0e0;
-}
-
-.alternative-payment {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 15px;
-  padding: 1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.alternative-payment h4 {
-  margin: 0 0 1rem 0;
-  color: #fff;
-  text-align: center;
-  font-size: 1.1rem;
-}
-
-.payment-methods {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin-bottom: 1rem;
-  flex-wrap: wrap;
-}
-
-.payment-method {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.7rem 1.2rem;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 10px;
-  font-size: 0.9rem;
-}
-
-.payment-icon {
-  font-size: 1.1rem;
-}
-
-.payment-note {
-  text-align: center;
-  margin: 0;
-  padding: 1rem;
-  background: rgba(255, 255, 0, 0.1);
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 0, 0.2);
-  font-size: 0.85rem;
-  line-height: 1.4;
-}
-
-.payment-note strong {
-  color: #ffff00;
-}
-
-.payment-note-bottom {
-  margin-top: 2rem;
-}
-
-.payment-reminder {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 1.5rem;
-  background: linear-gradient(135deg, 
-    rgba(0, 255, 255, 0.15) 0%, 
-    rgba(255, 0, 255, 0.1) 100%);
-  border-radius: 15px;
-  border: 1px solid rgba(0, 255, 255, 0.3);
-}
-
-.reminder-icon {
-  font-size: 2rem;
-  flex-shrink: 0;
-}
-
-.reminder-content strong {
-  color: #00ffff;
-  display: block;
-  margin-bottom: 0.3rem;
-  font-size: 1rem;
-}
-
-.reminder-content p {
-  margin: 0;
-  color: #ccc;
-  font-size: 0.9rem;
-  line-height: 1.4;
-}
-
-/* Адаптация для мобильных устройств */
-@media (max-width: 768px) {
-  .guide-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .guide-steps {
-    grid-template-columns: 1fr;
-  }
-  
-  .guide-benefits {
-    grid-template-columns: 1fr;
-  }
-  
-  .payment-methods {
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-  }
-  
-  .payment-reminder {
-    flex-direction: column;
-    text-align: center;
-  }
-  
-  .guide-card {
-    padding: 1.5rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .guide-steps {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  .guide-benefits {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* Существующие медиа-запросы остаются без изменений */
-
 .tickets {
   padding: 3rem 1rem;
   background: linear-gradient(135deg, #0a0a0a 0%, #000 50%, #1a0a2a 100%);

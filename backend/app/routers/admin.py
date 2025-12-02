@@ -4,6 +4,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.database import get_db
 from app import crud, schemas
 from app.dependencies import get_admin_user, get_chef_or_admin_user
+from app.utils.authUser import AuthUser
 
 router = APIRouter(prefix="/rostov_api/admin", tags=["admin"])
 
@@ -46,6 +47,15 @@ async def update_user_role(
 ):
     """Обновить роль пользователя (только для админа)"""
     try:
+        if role_update.role in ['standard', 'fast', 'vip']:
+            price = {'standard':700.0, 'fast':900.0, 'vip':1500.0}
+            existing_ticket = await crud.get_user_ticket(db, telegram_id)
+            if existing_ticket:
+                raise crud.CRUDError("User already has a ticket")
+            token = await AuthUser.create_jwt({'user_id':telegram_id})
+            qr_code = f'https://tg-gift-store.ru/rostov_party/check_ticket?token={token}'
+            ticket = schemas.TicketCreate(price=price[role_update.role], qr_code=qr_code)
+            return await crud.create_ticket(db, ticket, telegram_id)
         return await crud.update_user_role(db, telegram_id, role_update.role)
     except crud.CRUDError as e:
         raise HTTPException(status_code=400, detail=str(e))

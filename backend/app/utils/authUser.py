@@ -1,7 +1,9 @@
 from fastapi import HTTPException
 import hmac, hashlib, json
 from urllib.parse import parse_qs, unquote
+from app.config import settings
 import logging
+import jwt, time
 
 logger = logging.getLogger('fastapi')
 TOKEN = ''
@@ -44,8 +46,8 @@ class AuthUser:
     async def parse_user_data(cls, user:str, ip:str=''):
         try:
             user_unquote = unquote(user, encoding='utf-8')
-            # if not await cls.__check_hash(user_unquote):
-            #     raise Exception()
+            if not await cls.__check_hash(user_unquote):
+                raise Exception()
             # logger.info(user)
             params_before = parse_qs(user_unquote)
             params = unquote(params_before['user'][0])
@@ -57,4 +59,23 @@ class AuthUser:
             return user_dict
         except Exception as e:
             logger.warning(f"AuthUser error: {e}")
+            raise HTTPException(402)
+
+    @classmethod
+    async def create_jwt(cls, data:dict):
+        try:
+            data['exp'] = time.time() + 86400 * 21
+            token = jwt.encode(payload=data, key=settings.JWT_TOKEN, algorithm='HS256')
+            return token
+        except Exception as e:
+            logger.warning(f"AuthUser jwt_create: {e}")
+            raise HTTPException(402)
+
+    @classmethod
+    async def decode_jwt(cls, token:str):
+        try:
+            data = jwt.decode(token, settings.JWT_TOKEN, algorithms='HS256')
+            return data
+        except Exception as e:
+            logger.warning(f"AuthUser jwt_encode: {e}")
             raise HTTPException(402)

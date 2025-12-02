@@ -46,7 +46,11 @@ async def init_test_data():
     {
         "name": "Хот-Дог",
         "description": "Сочный хот-дог с мясной сосиской",
+<<<<<<< HEAD
         "price": 250.0,
+=======
+        "price": 300.0,
+>>>>>>> 7e9ba3fe22c549f8ccc0e6223dbc5677b26f11aa
         "category": "food",
         "count": 50,
         "is_for_table": False,
@@ -238,8 +242,8 @@ async def init_test_data():
             print(f"✅ Создано {products_created} тестовых продуктов")
 
             # 3. Создаем тестовых пользователей с разными ролями
-            test_users = [
-            ]
+            test_users = []
+
 
             users_created = 0
             for user_data in test_users:
@@ -261,8 +265,7 @@ async def init_test_data():
             print(f"✅ Создано {users_created} тестовых пользователей")
 
             # 4. Создаем тестовые билеты для некоторых пользователей
-            test_tickets = [
-            ]
+            test_tickets = []
 
             tickets_created = 0
             for ticket_data in test_tickets:
